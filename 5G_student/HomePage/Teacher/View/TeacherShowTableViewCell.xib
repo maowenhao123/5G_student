@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="120" id="KGk-i7-Jjw" customClass="TeacherShowTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabber_groupon_selected" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U0H-P6-jUO">
+                        <rect key="frame" x="15" y="10" width="137.5" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="rug-vZ-VcH"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabber_groupon_selected" translatesAutoresizingMaskIntoConstraints="NO" id="HTN-87-SH1">
+                        <rect key="frame" x="167.5" y="10" width="137.5" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="CbU-Wj-ePT"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="HTN-87-SH1" firstAttribute="width" secondItem="U0H-P6-jUO" secondAttribute="width" id="EvC-fb-tdl"/>
+                    <constraint firstItem="U0H-P6-jUO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="In0-H9-lxW"/>
+                    <constraint firstItem="U0H-P6-jUO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Lzf-Ir-b68"/>
+                    <constraint firstItem="HTN-87-SH1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ul7-sk-xdS"/>
+                    <constraint firstItem="HTN-87-SH1" firstAttribute="leading" secondItem="U0H-P6-jUO" secondAttribute="trailing" constant="15" id="rzL-QU-Ejc"/>
+                    <constraint firstAttribute="trailing" secondItem="HTN-87-SH1" secondAttribute="trailing" constant="15" id="tk5-ZH-px2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="showImageView1" destination="U0H-P6-jUO" id="m4T-0o-leT"/>
+                <outlet property="showImageView2" destination="HTN-87-SH1" id="Tg1-EY-DFn"/>
+            </connections>
+            <point key="canvasLocation" x="-12" y="88"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="tabber_groupon_selected" width="24" height="24"/>
+    </resources>
+</document>

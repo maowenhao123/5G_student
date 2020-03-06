@@ -1,0 +1,17 @@
+//
+//  TeacherModel.m
+//  5G_student
+//
+//  Created by 毛文豪 on 2020/2/23.
+//  Copyright © 2020 jiuge. All rights reserved.
+//
+
+#import "TeacherModel.h"
+
+@implementation LecturerModel
+
+@end
+
+@implementation TeacherModel
+
+@end
