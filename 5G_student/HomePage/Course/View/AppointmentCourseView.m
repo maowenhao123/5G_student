@@ -42,7 +42,7 @@
     [[MHttpTool shareInstance] postWithParameters:parameters url:@"/course/auth/course/user/period/list" success:^(id json) {
         [MBProgressHUD hideHUDForView:self.contentView];
         if (SUCCESS) {
-            [self setDateDataWithData:json[@"data"]];
+            [self setDateDataWithData:json[@"data"][@"list"]];
         }else
         {
             ShowErrorView
@@ -53,9 +53,15 @@
     }];
 }
 
-- (void)setDateDataWithData:(NSDictionary *)dataDic
+- (void)setDateDataWithData:(NSArray *)dataList
 {
-    
+    for (NSDictionary * dataDic in dataList) {
+        for (NSDictionary * dateDic in self.dataArray) {
+            if (<#condition#>) {
+                <#statements#>
+            }
+        }
+    }
 }
 #pragma mark - 布局子视图
 - (void)setupUI
@@ -109,14 +115,14 @@
         }
         NSDate *date = [calendar dateFromComponents:dateComponents];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"MM月dd日";
+        dateFormatter.dateFormat = @"MM.dd";
         CGFloat buttonW = (self.width - 2 * 5) / 7;
         for (int j = 0; j < 2; j++) {
             UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.frame = CGRectMake(5 + buttonW * i, 0, buttonW, weekView.height);
             [button setTitleColor:MBlackTextColor forState:UIControlStateNormal];
             [button setTitleColor:MDefaultColor forState:UIControlStateSelected];
-            button.titleLabel.font = [UIFont systemFontOfSize:12];
+            button.titleLabel.font = [UIFont systemFontOfSize:14];
             if (j == 0) {
                 NSDateComponents * weekDateComponents = [calendar components:NSCalendarUnitWeekday fromDate:date];
                 [button setTitle:[NSString stringWithFormat:@"%@", weeks[weekDateComponents.weekday - 1]] forState:UIControlStateNormal];
@@ -137,6 +143,13 @@
                 }
             }
         }
+        NSDateFormatter *fullDateFormatter = [[NSDateFormatter alloc] init];
+        fullDateFormatter.dateFormat = @"YYYY-MM-dd";
+        NSDictionary * dateDic = @{
+            @"date": [fullDateFormatter stringFromDate:date],
+            @"list": [NSMutableArray array]
+        };
+        [self.dataArray addObject:dateDic];
     }
     
     UIView * line2 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(dateView.frame) - 1, self.width, 1)];

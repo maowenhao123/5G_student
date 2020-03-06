@@ -134,7 +134,7 @@
 {
     _courseModel = courseModel;
     
-    if (_courseModel.courseType == 2) {//一对一需要预约
+    if (_courseModel.courseType == 3) {//一对一需要预约
         [self.applyButton setTitle:@"预约" forState:UIControlStateNormal];
     }else
     {
