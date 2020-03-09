@@ -11,12 +11,13 @@
 @interface AreaPickerView ()<UIPickerViewDataSource,UIPickerViewDelegate>
 
 @property (nonatomic, weak) UIView *contentView;
-@property (nonatomic, weak) UIPickerView * pickView;
-@property (nonatomic, strong) NSArray *categoryArray1;
-@property (nonatomic, strong) NSArray *categoryArray2;
+@property (nonatomic, weak) UIPickerView * pickerView;
+@property (nonatomic, strong) NSArray *dataArray1;
+@property (nonatomic, strong) NSArray *dataArray2;
+@property (nonatomic, strong) NSArray *areaArray1;
+@property (nonatomic, strong) NSArray *areaArray2;
 @property (nonatomic, assign) NSInteger selectedIndex1;
 @property (nonatomic, assign) NSInteger selectedIndex2;
-@property (nonatomic, copy) NSArray * courseCategoryList;
 
 @end
 
@@ -63,34 +64,49 @@
         [toolView addSubview:selectButton];
         
         //PickerView
-        UIPickerView * pickView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(toolView.frame), MScreenWidth, contentView.height - CGRectGetMaxY(toolView.frame))];
-        self.pickView = pickView;
-        pickView.backgroundColor = [UIColor whiteColor];
-        pickView.delegate = self;
-        pickView.dataSource = self;
-        [pickView selectRow:0 inComponent:0 animated:NO];
-        [contentView addSubview:pickView];
+        UIPickerView * pickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(toolView.frame), MScreenWidth, contentView.height - CGRectGetMaxY(toolView.frame))];
+        self.pickerView = pickerView;
+        pickerView.backgroundColor = [UIColor whiteColor];
+        pickerView.delegate = self;
+        pickerView.dataSource = self;
+        [pickerView selectRow:0 inComponent:0 animated:NO];
+        [contentView addSubview:pickerView];
         
-        [self getAreaData];
-//        self.courseCategoryList = [MUserDefaultTool getCategoryList];
-//        [self setcategoryArray1];
-//        [self setcategoryArray2WithRow1:0];
-//        [self.pickView reloadAllComponents];
+        [self getAreaDataWithParentId:1];
     }
     return self;
 }
 
 #pragma mark - 请求数据
-- (void)getAreaData
+- (void)getAreaDataWithParentId:(NSInteger)parentId
 {
     NSDictionary *parameters = @{
-        
+        @"parentId": @(parentId)
     };
     [MBProgressHUD showMessage:@"" toView:self.contentView];
     [[MHttpTool shareInstance] postWithParameters:parameters url:@"/system/api/region/list" success:^(id json) {
         [MBProgressHUD hideHUDForView:self.contentView];
         if (SUCCESS) {
-            
+            NSMutableArray *areaMuArr = [NSMutableArray array];
+            for (NSDictionary * areaDic in json[@"data"][@"list"]) {
+                [areaMuArr addObject:areaDic[@"mergerName"]];
+            }
+            if (parentId == 1) {
+                self.dataArray1 = json[@"data"][@"list"];
+                self.areaArray1 = [NSArray arrayWithArray:areaMuArr];
+                [self.pickerView reloadComponent:0];
+                
+                if (self.dataArray1.count > 0) {
+                    NSDictionary * areaDic = self.dataArray1[0];
+                    [self getAreaDataWithParentId:[areaDic[@"id"] integerValue]];
+                }
+            }else
+            {
+                self.dataArray2 = json[@"data"][@"list"];
+                self.areaArray2 = [NSArray arrayWithArray:areaMuArr];
+                [self.pickerView selectRow:0 inComponent:1 animated:NO];
+                [self.pickerView reloadComponent:1];
+            }
         }else
         {
             ShowErrorView
@@ -101,41 +117,11 @@
     }];
 }
 
-//设置数据
-- (void)setcategoryArray1
-{
-    NSArray * categoryArr = self.courseCategoryList;
-    NSMutableArray *categoryMuArr = [NSMutableArray array];
-    for (NSDictionary * categoryDic in categoryArr) {
-        [categoryMuArr addObject:categoryDic[@"categoryName"]];
-    }
-    self.categoryArray1 = [NSArray arrayWithArray:categoryMuArr];
-}
-
-- (void)setcategoryArray2WithRow1:(NSInteger)row1
-{
-    NSArray * categoryArr = self.courseCategoryList;
-    
-    NSDictionary * categoryDic_child = categoryArr[row1];
-    NSArray * categoryArr_child = categoryDic_child[@"list"];
-    
-    NSMutableArray *categoryMuArr = [NSMutableArray array];
-    for (NSDictionary * categoryDic in categoryArr_child) {
-        [categoryMuArr addObject:categoryDic[@"categoryName"]];
-    }
-    self.categoryArray2 = [NSArray arrayWithArray:categoryMuArr];
-}
-
 #pragma  mark - function
 - (void)selectBarClicked
 {
-    NSArray * categoryArr = self.courseCategoryList;
-    
-    NSDictionary * categoryDic_child = categoryArr[self.selectedIndex1];
-    NSArray * categoryArr_child = categoryDic_child[@"list"];
-    
     if (self.block) {
-        self.block(categoryArr[self.selectedIndex1], categoryArr_child[self.selectedIndex2]);
+        self.block(self.areaArray1[self.selectedIndex1], self.areaArray2[self.selectedIndex2]);
     }
     [self hide];
 }
@@ -168,17 +154,17 @@
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if (component == 0) {
-        return self.categoryArray1.count;
+        return self.areaArray1.count;
     }
-    return self.categoryArray2.count;
+    return self.areaArray2.count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (component == 0) {
-        return self.categoryArray1[row];
+        return self.areaArray1[row];
     }
-    return self.categoryArray2[row];
+    return self.areaArray2[row];
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
@@ -205,12 +191,10 @@
 {
     //刷新数据
     if (component == 0) {
-        [self setcategoryArray2WithRow1:row];
-        self.selectedIndex2 = 0;
-        [pickerView selectRow:0 inComponent:1 animated:NO];
-        [pickerView reloadComponent:1];
-        
         self.selectedIndex1 = row;
+        
+        NSDictionary * areaDic = self.dataArray1[row];
+        [self getAreaDataWithParentId:[areaDic[@"id"] integerValue]];
     }else if (component == 1)
     {
         self.selectedIndex2 = row;
@@ -218,22 +202,40 @@
 }
 
 #pragma mark - Getting
-- (NSArray *)categoryArray1
+- (NSArray *)dataArray1
 {
-    if (!_categoryArray1)
+    if (!_dataArray1)
     {
-        _categoryArray1 = [NSArray array];
+        _dataArray1 = [NSArray array];
     }
-    return _categoryArray1;
+    return _dataArray1;
 }
 
-- (NSArray *)categoryArray2
+- (NSArray *)dataArray2
 {
-    if (!_categoryArray2)
+    if (!_dataArray2)
     {
-        _categoryArray2 = [NSArray array];
+        _dataArray2 = [NSArray array];
     }
-    return _categoryArray2;
+    return _dataArray2;
+}
+
+- (NSArray *)areaArray1
+{
+    if (!_areaArray1)
+    {
+        _areaArray1 = [NSArray array];
+    }
+    return _areaArray1;
+}
+
+- (NSArray *)areaArray2
+{
+    if (!_areaArray2)
+    {
+        _areaArray2 = [NSArray array];
+    }
+    return _areaArray2;
 }
 
 

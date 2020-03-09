@@ -59,13 +59,13 @@
         [toolView addSubview:selectButton];
         
         //PickerView
-        UIPickerView * pickView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(toolView.frame), MScreenWidth, contentView.height - CGRectGetMaxY(toolView.frame))];
-        pickView.backgroundColor = [UIColor whiteColor];
-        pickView.delegate = self;
-        pickView.dataSource = self;
-        [contentView addSubview:pickView];
+        UIPickerView * pickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(toolView.frame), MScreenWidth, contentView.height - CGRectGetMaxY(toolView.frame))];
+        pickerView.backgroundColor = [UIColor whiteColor];
+        pickerView.delegate = self;
+        pickerView.dataSource = self;
+        [contentView addSubview:pickerView];
         
-        [pickView selectRow:index inComponent:0 animated:NO];
+        [pickerView selectRow:index inComponent:0 animated:NO];
         self.selectedString = self.dataArray[index];
     }
     return self;

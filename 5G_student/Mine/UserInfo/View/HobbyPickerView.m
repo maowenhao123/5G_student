@@ -12,7 +12,7 @@
 @interface HobbyPickerView ()<UIPickerViewDataSource,UIPickerViewDelegate>
 
 @property (nonatomic, weak) UIView *contentView;
-@property (nonatomic, weak) UIPickerView * pickView;
+@property (nonatomic, weak) UIPickerView * pickerView;
 @property (nonatomic, strong) NSArray *categoryArray1;
 @property (nonatomic, strong) NSArray *categoryArray2;
 @property (nonatomic, assign) NSInteger selectedIndex1;
@@ -64,18 +64,18 @@
         [toolView addSubview:selectButton];
         
         //PickerView
-        UIPickerView * pickView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(toolView.frame), MScreenWidth, contentView.height - CGRectGetMaxY(toolView.frame))];
-        self.pickView = pickView;
-        pickView.backgroundColor = [UIColor whiteColor];
-        pickView.delegate = self;
-        pickView.dataSource = self;
-        [pickView selectRow:0 inComponent:0 animated:NO];
-        [contentView addSubview:pickView];
+        UIPickerView * pickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(toolView.frame), MScreenWidth, contentView.height - CGRectGetMaxY(toolView.frame))];
+        self.pickerView = pickerView;
+        pickerView.backgroundColor = [UIColor whiteColor];
+        pickerView.delegate = self;
+        pickerView.dataSource = self;
+        [pickerView selectRow:0 inComponent:0 animated:NO];
+        [contentView addSubview:pickerView];
         
         self.courseCategoryList = [MUserDefaultTool getCategoryList];
         [self setcategoryArray1];
         [self setcategoryArray2WithRow1:0];
-        [self.pickView reloadAllComponents];
+        [self.pickerView reloadAllComponents];
     }
     return self;
 }

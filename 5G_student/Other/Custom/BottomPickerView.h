@@ -14,7 +14,7 @@ typedef void (^ChoicePickerViewBlock)(NSInteger selectedIndex);
 
 @interface BottomPickerView : UIView
 /**
- *  创建一个底部的pickview
+ *  创建一个底部的pickerView
  *
  *  @param dataArray  数据源
  *  @param index      当前选中的index

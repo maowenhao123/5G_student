@@ -81,8 +81,8 @@
     AreaPickerView * areaPickerView = [[AreaPickerView alloc] init];
     self.areaPickerView = areaPickerView;
     __weak typeof(self) wself = self;
-    areaPickerView.block = ^(NSDictionary * categoryDic, NSDictionary * subjectDic){
-        wself.userModel.area = [NSString stringWithFormat:@"%@ %@", categoryDic[@"categoryName"], subjectDic[@"categoryName"]];
+    areaPickerView.block = ^(NSString * _Nonnull areaStr, NSString * _Nonnull subAreaStr) {
+        wself.userModel.area = [NSString stringWithFormat:@"%@ %@", areaStr, subAreaStr];
         [wself.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     };
     
@@ -108,7 +108,7 @@
     NSDictionary *parameters = @{
         @"headImgUrl": self.userModel.headImgUrl,
         @"nickname": self.userModel.nickname,
-        @"area": @"",
+        @"area": self.userModel.area,
         @"hobby": self.userModel.hobby
     };
     waitingView
