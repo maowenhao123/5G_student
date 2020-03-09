@@ -7,6 +7,7 @@
 //
 
 #import "ScheduleListViewController.h"
+#import "VideoScheduleViewController.h"
 #import "CourseDetailViewController.h"
 #import "CourseTableViewCell.h"
 
@@ -156,10 +157,17 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    CourseDetailViewController * courseDetailVC = [[CourseDetailViewController alloc] init];
     CourseModel *courseModel = self.courseArray[indexPath.row];
-    courseDetailVC.courseId = courseModel.id;
-    [self.navigationController pushViewController:courseDetailVC animated:YES];
+    if (courseModel.courseType == 1) {
+        VideoScheduleViewController * videoScheduleVC = [[VideoScheduleViewController alloc] init];
+        videoScheduleVC.courseId = courseModel.id;
+        [self.navigationController pushViewController:videoScheduleVC animated:YES];
+    }else
+    {
+        CourseDetailViewController * courseDetailVC = [[CourseDetailViewController alloc] init];
+        courseDetailVC.courseId = courseModel.id;
+        [self.navigationController pushViewController:courseDetailVC animated:YES];
+    }
 }
 
 @end

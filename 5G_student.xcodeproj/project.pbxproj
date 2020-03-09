@@ -98,6 +98,11 @@
 		1D37371023C854F50063E036 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D37370F23C854F50063E036 /* MessageViewController.m */; };
 		1D6AFA0E24161BFA00146230 /* TeacherShowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6AFA0D24161BFA00146230 /* TeacherShowTableViewCell.xib */; };
 		1D6AFA1124161DDA00146230 /* TeacherShowCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6AFA1024161DDA00146230 /* TeacherShowCollectionView.m */; };
+		1D6AFA1424163D0500146230 /* VideoScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6AFA1324163D0500146230 /* VideoScheduleViewController.m */; };
+		1D6AFA312416434600146230 /* VideoScheduleInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6AFA2F2416434600146230 /* VideoScheduleInfoTableViewCell.m */; };
+		1D6AFA322416434600146230 /* VideoScheduleInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6AFA302416434600146230 /* VideoScheduleInfoTableViewCell.xib */; };
+		1D6AFA3924164D2000146230 /* VideoSchedulePeriodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6AFA3624164D2000146230 /* VideoSchedulePeriodTableViewCell.xib */; };
+		1D6AFA3A24164D2000146230 /* VideoSchedulePeriodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6AFA3824164D2000146230 /* VideoSchedulePeriodTableViewCell.m */; };
 		1DA86DC72415E8BB00D57689 /* BuyCourseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA86DC52415E8BB00D57689 /* BuyCourseTableViewCell.m */; };
 		1DA86DC82415E8BB00D57689 /* BuyCourseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DA86DC62415E8BB00D57689 /* BuyCourseTableViewCell.xib */; };
 		1DA86DCB24160D1200D57689 /* AreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA86DCA24160D1200D57689 /* AreaPickerView.m */; };
@@ -542,6 +547,14 @@
 		1D6AFA0D24161BFA00146230 /* TeacherShowTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeacherShowTableViewCell.xib; sourceTree = "<group>"; };
 		1D6AFA0F24161DDA00146230 /* TeacherShowCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherShowCollectionView.h; sourceTree = "<group>"; };
 		1D6AFA1024161DDA00146230 /* TeacherShowCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherShowCollectionView.m; sourceTree = "<group>"; };
+		1D6AFA1224163D0500146230 /* VideoScheduleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoScheduleViewController.h; sourceTree = "<group>"; };
+		1D6AFA1324163D0500146230 /* VideoScheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoScheduleViewController.m; sourceTree = "<group>"; };
+		1D6AFA2E2416434600146230 /* VideoScheduleInfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoScheduleInfoTableViewCell.h; sourceTree = "<group>"; };
+		1D6AFA2F2416434600146230 /* VideoScheduleInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoScheduleInfoTableViewCell.m; sourceTree = "<group>"; };
+		1D6AFA302416434600146230 /* VideoScheduleInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoScheduleInfoTableViewCell.xib; sourceTree = "<group>"; };
+		1D6AFA3624164D2000146230 /* VideoSchedulePeriodTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoSchedulePeriodTableViewCell.xib; sourceTree = "<group>"; };
+		1D6AFA3724164D2000146230 /* VideoSchedulePeriodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSchedulePeriodTableViewCell.h; sourceTree = "<group>"; };
+		1D6AFA3824164D2000146230 /* VideoSchedulePeriodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoSchedulePeriodTableViewCell.m; sourceTree = "<group>"; };
 		1DA86DC42415E8BB00D57689 /* BuyCourseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyCourseTableViewCell.h; sourceTree = "<group>"; };
 		1DA86DC52415E8BB00D57689 /* BuyCourseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyCourseTableViewCell.m; sourceTree = "<group>"; };
 		1DA86DC62415E8BB00D57689 /* BuyCourseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BuyCourseTableViewCell.xib; sourceTree = "<group>"; };
@@ -1698,6 +1711,12 @@
 		AA5B38E32400044300EAA3DC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1D6AFA2E2416434600146230 /* VideoScheduleInfoTableViewCell.h */,
+				1D6AFA2F2416434600146230 /* VideoScheduleInfoTableViewCell.m */,
+				1D6AFA302416434600146230 /* VideoScheduleInfoTableViewCell.xib */,
+				1D6AFA3724164D2000146230 /* VideoSchedulePeriodTableViewCell.h */,
+				1D6AFA3824164D2000146230 /* VideoSchedulePeriodTableViewCell.m */,
+				1D6AFA3624164D2000146230 /* VideoSchedulePeriodTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1716,6 +1735,8 @@
 				AA5B38EA2400047900EAA3DC /* ScheduleViewController.m */,
 				AA2C8FFA2405017D00879EB8 /* ScheduleListViewController.h */,
 				AA2C8FFB2405017D00879EB8 /* ScheduleListViewController.m */,
+				1D6AFA1224163D0500146230 /* VideoScheduleViewController.h */,
+				1D6AFA1324163D0500146230 /* VideoScheduleViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2599,6 +2620,7 @@
 			files = (
 				1D096998240F81940043A0D7 /* BalanceDetailTableViewCell.xib in Resources */,
 				AA2C8FDB2403B7B300879EB8 /* CourseInfoTableViewCell.xib in Resources */,
+				1D6AFA322416434600146230 /* VideoScheduleInfoTableViewCell.xib in Resources */,
 				AA5B391A24025E2B00EAA3DC /* TeacherTableViewCell.xib in Resources */,
 				AA63CDFF23F51B0C000BACED /* UserInfoTableViewCell.xib in Resources */,
 				AA63CDF723F51997000BACED /* UserAvatarTableViewCell.xib in Resources */,
@@ -2607,6 +2629,7 @@
 				AA6C736123F2D93C00C79056 /* MBProgressHUD.bundle in Resources */,
 				AA63CDC623F50F4B000BACED /* MJRefresh.bundle in Resources */,
 				AA63CD6C23F42689000BACED /* HXPhotoPicker.bundle in Resources */,
+				1D6AFA3924164D2000146230 /* VideoSchedulePeriodTableViewCell.xib in Resources */,
 				AA2C8FD62403B78B00879EB8 /* CouresPeriodTableViewCell.xib in Resources */,
 				AABACC8223F912F200B96B84 /* PGDatePicker.bundle in Resources */,
 				1D37347023C57EC60063E036 /* Assets.xcassets in Resources */,
@@ -2753,6 +2776,7 @@
 				AA63CD6823F42689000BACED /* HXPhotoBottomConfiguration.m in Sources */,
 				AA5B3902240241B100EAA3DC /* TADotView.m in Sources */,
 				AA63CD4823F42689000BACED /* UIFont+HXExtension.m in Sources */,
+				1D6AFA3A24164D2000146230 /* VideoSchedulePeriodTableViewCell.m in Sources */,
 				1D0970DE241239E60043A0D7 /* SDImageFrame.m in Sources */,
 				AABACC8023F912F200B96B84 /* NSDate+PGCategory.m in Sources */,
 				AA5B3901240241B100EAA3DC /* SDCollectionViewCell.m in Sources */,
@@ -2774,6 +2798,7 @@
 				AA63CDCD23F50F4B000BACED /* MJRefreshAutoStateFooter.m in Sources */,
 				1D0970F4241239E60043A0D7 /* SDImageAssetManager.m in Sources */,
 				AABACC7C23F912F200B96B84 /* PGPickerColumnView.m in Sources */,
+				1D6AFA312416434600146230 /* VideoScheduleInfoTableViewCell.m in Sources */,
 				1D0970DB241239E60043A0D7 /* SDWebImageDownloaderConfig.m in Sources */,
 				AABACC7123F912F200B96B84 /* PGDatePickerView.m in Sources */,
 				AA63CDDF23F50F4B000BACED /* NSString+MJExtension.m in Sources */,
@@ -2806,6 +2831,7 @@
 				AA5B390E24025CF100EAA3DC /* MyAttentionViewController.m in Sources */,
 				1D0970F3241239E60043A0D7 /* SDImageCachesManagerOperation.m in Sources */,
 				1D0970D8241239E60043A0D7 /* SDDiskCache.m in Sources */,
+				1D6AFA1424163D0500146230 /* VideoScheduleViewController.m in Sources */,
 				AABACC8423F912F200B96B84 /* PGDatePicker+DateAndTime.m in Sources */,
 				1D0970D6241239E60043A0D7 /* NSButton+WebCache.m in Sources */,
 				AA2C8FFC2405017D00879EB8 /* ScheduleListViewController.m in Sources */,
