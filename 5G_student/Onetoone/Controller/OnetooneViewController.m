@@ -115,7 +115,7 @@
         courseListVC.categoryId1 = [NSString stringWithFormat:@"%@", categoryDic[@"id"]];
         NSDictionary * subCategoryDic = categoryDic[@"list"][i];
         courseListVC.categoryId2 = [NSString stringWithFormat:@"%@", subCategoryDic[@"id"]];
-        courseListVC.courseType = -1;
+        courseListVC.courseType = 3;
         [childArr addObject:courseListVC];
     }
     CGFloat contentViewHeight = MScreenHeight - MStatusBarH - MNavBarH - CGRectGetMaxY(self.pageTitleView.frame);

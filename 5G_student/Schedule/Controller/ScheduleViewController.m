@@ -80,6 +80,7 @@
     [self.view addSubview:self.pageContentScrollView];
     
     self.videoScheduleVC = [[ScheduleListViewController alloc] init];
+    self.videoScheduleVC.status = -1;
     self.videoScheduleVC.view.frame = CGRectMake(0, 0, MScreenWidth, MScreenHeight - MStatusBarH - MNavBarH);
     [self.view addSubview:self.videoScheduleVC.view];
     [self addChildViewController:self.videoScheduleVC];

@@ -215,13 +215,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        return UITableViewAutomaticDimension;
-    }else if (indexPath.section == 1)
+    if (indexPath.section == 1)
     {
         return 120;
     }
-    return 100;
+    return UITableViewAutomaticDimension;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

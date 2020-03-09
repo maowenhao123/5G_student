@@ -119,7 +119,8 @@
 - (void)applyButtonDidClick:(UIButton *)button
 {
     if ([button.currentTitle isEqualToString:@"预约"]) {
-        AppointmentCourseView * appointmentCourseView = [[AppointmentCourseView alloc] initWithFrame:CGRectMake(0, 0, MScreenWidth, MScreenHeight) courseId:self.courseId];
+        AppointmentCourseView * appointmentCourseView = [[AppointmentCourseView alloc] initWithFrame:CGRectMake(0, 0, MScreenWidth, MScreenHeight)];
+        appointmentCourseView.courseId = self.courseId;
         [self.view addSubview:appointmentCourseView];
     }else if ([button.currentTitle isEqualToString:@"报名"])
     {

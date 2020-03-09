@@ -7,6 +7,7 @@
 //
 
 #import "AppointmentCourseView.h"
+#import "PlaceOrderViewController.h"
 #import "PeriodModel.h"
 
 @interface AppointmentCourseView ()<UIGestureRecognizerDelegate>
@@ -15,6 +16,7 @@
 @property (nonatomic, weak) UIButton *selDateButton;
 @property (strong, nonatomic) NSMutableArray *dateButtons;
 @property (nonatomic, weak) UIView *periodView;
+@property (nonatomic, weak) UIButton *selPeriodButton;
 @property (strong, nonatomic) NSMutableArray *periodButtons;
 @property (strong, nonatomic) NSMutableArray *dataArray;
 
@@ -22,12 +24,11 @@
 
 @implementation AppointmentCourseView
 
-- (instancetype)initWithFrame:(CGRect)frame courseId:(NSString *)courseId
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         [self setupUI];
-        [self getPeriodDataWithCourseId:courseId];
     }
     return self;
 }
@@ -42,7 +43,8 @@
     [[MHttpTool shareInstance] postWithParameters:parameters url:@"/course/auth/course/user/period/list" success:^(id json) {
         [MBProgressHUD hideHUDForView:self.contentView];
         if (SUCCESS) {
-            [self setDateDataWithData:json[@"data"][@"list"]];
+            NSArray * dataArray = [PeriodModel mj_objectArrayWithKeyValuesArray:json[@"data"][@"list"]];
+            [self setDateDataWithData:dataArray];
         }else
         {
             ShowErrorView
@@ -55,14 +57,27 @@
 
 - (void)setDateDataWithData:(NSArray *)dataList
 {
-    for (NSDictionary * dataDic in dataList) {
-        for (NSDictionary * dateDic in self.dataArray) {
-            if (<#condition#>) {
-                <#statements#>
+    for (PeriodModel * periodModel in dataList) {
+        for (NSMutableDictionary * dateDic in self.dataArray) {
+            NSString * date = dateDic[@"date"];
+            date = [date stringByReplacingOccurrencesOfString:@"." withString:@"-"];
+            if ([periodModel.date containsString:date]) {
+                NSMutableArray * list = dateDic[@"list"];
+                [list addObject:periodModel];
             }
         }
     }
+    [self reloadPeriodView];
 }
+
+#pragma mark - Setting
+- (void)setCourseId:(NSString *)courseId
+{
+    _courseId = courseId;
+
+    [self getPeriodDataWithCourseId:_courseId];
+}
+
 #pragma mark - 布局子视图
 - (void)setupUI
 {
@@ -119,17 +134,19 @@
         CGFloat buttonW = (self.width - 2 * 5) / 7;
         for (int j = 0; j < 2; j++) {
             UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button.tag = i;
             button.frame = CGRectMake(5 + buttonW * i, 0, buttonW, weekView.height);
             [button setTitleColor:MBlackTextColor forState:UIControlStateNormal];
             [button setTitleColor:MDefaultColor forState:UIControlStateSelected];
-            button.titleLabel.font = [UIFont systemFontOfSize:14];
             if (j == 0) {
+                button.titleLabel.font = [UIFont systemFontOfSize:15];
                 NSDateComponents * weekDateComponents = [calendar components:NSCalendarUnitWeekday fromDate:date];
                 [button setTitle:[NSString stringWithFormat:@"%@", weeks[weekDateComponents.weekday - 1]] forState:UIControlStateNormal];
                 [weekView addSubview:button];
                 button.userInteractionEnabled = NO;
             }else if (j == 1)
             {
+                button.titleLabel.font = [UIFont systemFontOfSize:16];
                 [button setTitle:[dateFormatter stringFromDate:date] forState:UIControlStateNormal];
                 [button addTarget:self action:@selector(dateButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
                 [dateView addSubview:button];
@@ -143,12 +160,9 @@
                 }
             }
         }
-        NSDateFormatter *fullDateFormatter = [[NSDateFormatter alloc] init];
-        fullDateFormatter.dateFormat = @"YYYY-MM-dd";
-        NSDictionary * dateDic = @{
-            @"date": [fullDateFormatter stringFromDate:date],
-            @"list": [NSMutableArray array]
-        };
+        NSMutableDictionary * dateDic = [NSMutableDictionary dictionary];
+        [dateDic setValue:[dateFormatter stringFromDate:date] forKey:@"date"];
+        [dateDic setValue:[NSMutableArray array] forKey:@"list"];
         [self.dataArray addObject:dateDic];
     }
     
@@ -190,22 +204,116 @@
         [subView removeFromSuperview];
     }
     [self.periodButtons removeAllObjects];
+    self.selPeriodButton = nil;
     
+    NSArray *periodArray = [NSArray array];
+    for (NSMutableDictionary * dateDic in self.dataArray) {
+        if ([dateDic[@"date"] isEqualToString:self.selDateButton.currentTitle]) {
+            periodArray = dateDic[@"list"];
+        }
+    }
     
+    CGFloat periodButtonW = (MScreenWidth - 4 * MMargin) / 3;
+    CGFloat periodButtonH = 32;
+    for (int i = 0; i < periodArray.count; i++) {
+        PeriodModel * periodModel = periodArray[i];
+        UIButton * periodButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        periodButton.tag = i;
+        periodButton.frame = CGRectMake(MMargin + (periodButtonW + MMargin) * (i % 3), MMargin + (periodButtonH + MMargin) * (i / 3), periodButtonW, periodButtonH);
+        NSString * startTime = periodModel.startTime;
+        if (startTime.length >= 19) {
+            startTime = [startTime substringWithRange:NSMakeRange(11, 5)];
+        }
+        NSString * endTime = periodModel.endTime;
+        if (endTime.length >= 19) {
+            endTime = [endTime substringWithRange:NSMakeRange(11, 5)];
+        }
+        NSString *periodTime = [NSString stringWithFormat:@"%@~%@", startTime, endTime];
+        [periodButton setTitle:periodTime forState:UIControlStateNormal];
+        [periodButton setTitleColor:MBlackTextColor forState:UIControlStateNormal];
+        [periodButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        periodButton.titleLabel.font = [UIFont systemFontOfSize:15];
+        periodButton.layer.cornerRadius = periodButton.height / 2;
+        periodButton.layer.masksToBounds = YES;
+        if (i == 0) {
+            periodButton.selected = YES;
+            periodButton.backgroundColor = MDefaultColor;
+            periodButton.layer.borderWidth = 0;
+            self.selPeriodButton = periodButton;
+        }else
+        {
+            periodButton.selected = NO;
+            periodButton.backgroundColor = [UIColor whiteColor];
+            periodButton.layer.borderColor = MGrayLineColor.CGColor;
+            periodButton.layer.borderWidth = 1;
+        }
+        [periodButton addTarget:self action:@selector(periodButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.periodView addSubview:periodButton];
+        [self.periodButtons addObject:periodButton];
+    }
 }
 
 #pragma mark - 点击事件
 - (void)dateButtonDidClick:(UIButton *)button
 {
-    button.selected = YES;
-    self.selDateButton.selected = NO;
-    self.selDateButton = button;
+    for (UIButton * dateButton in self.dateButtons) {
+        if (dateButton.selected && dateButton != button) {
+            dateButton.selected = NO;
+        }else if (dateButton == button)
+        {
+            dateButton.selected = YES;
+            self.selDateButton = button;
+        }
+    }
     [self reloadPeriodView];
+}
+
+- (void)periodButtonDidClick:(UIButton *)button
+{
+    for (UIButton * periodButton in self.periodButtons) {
+        if (periodButton.selected && periodButton != button) {
+            periodButton.selected = NO;
+            periodButton.backgroundColor = [UIColor whiteColor];
+            periodButton.layer.borderColor = MGrayLineColor.CGColor;
+            periodButton.layer.borderWidth = 1;
+        }else if (periodButton == button)
+        {
+            periodButton.selected = YES;
+            periodButton.backgroundColor = MDefaultColor;
+            periodButton.layer.borderWidth = 0;
+            self.selPeriodButton = periodButton;
+        }
+    }
 }
 
 - (void)appointmentButtonDidClick
 {
-    
+    PeriodModel * selPeriodModel;
+    for (NSMutableDictionary * dateDic in self.dataArray) {
+        if ([dateDic[@"date"] isEqualToString:self.selDateButton.currentTitle]) {
+            NSArray * periodArray = dateDic[@"list"];
+            for (int i = 0; i < periodArray.count; i++) {
+                PeriodModel * periodModel = periodArray[i];
+                NSString * startTime = periodModel.startTime;
+                if (startTime.length >= 19) {
+                    startTime = [startTime substringWithRange:NSMakeRange(11, 5)];
+                }
+                NSString * endTime = periodModel.endTime;
+                if (endTime.length >= 19) {
+                    endTime = [endTime substringWithRange:NSMakeRange(11, 5)];
+                }
+                NSString *periodTime = [NSString stringWithFormat:@"%@~%@", startTime, endTime];
+                if ([self.selPeriodButton.currentTitle isEqualToString:periodTime]) {
+                    selPeriodModel = periodModel;
+                    break;
+                }
+            }
+        }
+    }
+    PlaceOrderViewController * placeOrderVC = [[PlaceOrderViewController alloc] init];
+    placeOrderVC.courseId = self.courseId;
+    placeOrderVC.periodId = selPeriodModel.id;
+    [self.viewController.navigationController pushViewController:placeOrderVC animated:YES];
 }
 
 #pragma mark - Getting

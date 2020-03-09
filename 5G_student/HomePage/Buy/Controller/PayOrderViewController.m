@@ -105,6 +105,10 @@
         @"payType": @(indexPath.row),
         @"courseId": self.courseId
     };
+    NSMutableDictionary *parameters_mu = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    if (!MStringIsEmpty(self.periodId)) {
+        [parameters_mu setObject:self.periodId forKey:@"periodId"];
+    }
     waitingView
     [[MHttpTool shareInstance] postWithParameters:parameters url:@"/course/auth/order/pay" success:^(id json) {
         [MBProgressHUD hideHUDForView:self.view];
@@ -116,9 +120,6 @@
         }else
         {
             ShowErrorView
-            
-            PaySuccessViewController * paySuccessVC = [[PaySuccessViewController alloc] init];
-            [self.navigationController pushViewController:paySuccessVC animated:YES];
         }
     } failure:^(NSError *error) {
         MLog(@"error:%@",error);

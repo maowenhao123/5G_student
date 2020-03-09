@@ -37,7 +37,7 @@
     tap.delegate = self;
     [self addGestureRecognizer:tap];
     
-    UIView * contentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height, self.width, 350 + MSafeBottomMargin)];
+    UIView * contentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height, self.width, 400 + MSafeBottomMargin)];
     self.contentView = contentView;
     contentView.backgroundColor = [UIColor whiteColor];
     [self addSubview:contentView];

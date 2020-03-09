@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *categoryId2;
 @property (nonatomic, copy) NSString *categoryId3;
 @property (nonatomic, strong) LecturerModel *lecturer;
-@property (nonatomic, copy) NSArray *periodList;
+@property (nonatomic, copy) NSArray <PeriodModel *>*periodList;
 
 @end
 

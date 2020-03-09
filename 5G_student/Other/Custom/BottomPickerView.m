@@ -70,6 +70,7 @@
     }
     return self;
 }
+
 #pragma  mark - function
 - (void)selectBarClicked
 {
@@ -80,7 +81,8 @@
     [self hide];
 }
 
-- (void)show{
+- (void)show
+{
     UIView *topView = [KEY_WINDOW.subviews firstObject];
     [topView addSubview:self];
     
@@ -88,7 +90,9 @@
         self.contentView.y = MScreenHeight - self.contentView.height;
     }];
 }
-- (void)hide{
+
+- (void)hide
+{
     [UIView animateWithDuration:0.2 animations:^{
         self.alpha = 0;
         self.contentView.y = MScreenHeight;
@@ -96,20 +100,31 @@
         [self removeFromSuperview];
     }];
 }
-#pragma mark - UIPickerViewDataSource
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+#pragma mark - UIPickerViewDataSource
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
     return self.dataArray.count;
 }
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
     return self.dataArray[row];
 }
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return 36;
+}
+
 #pragma mark - UIPickerViewDelegate
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
     UILabel* pickerLabel = (UILabel*)view;
     if (!pickerLabel){
         pickerLabel = [[UILabel alloc] init];
@@ -122,7 +137,8 @@
     return pickerLabel;
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
     self.selectedString = self.dataArray[row];
 }
 

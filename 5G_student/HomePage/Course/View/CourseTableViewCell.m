@@ -39,7 +39,7 @@
     NSString *nameString = [NSString stringWithFormat:@" %@", _courseModel.courseName];
     self.nameLabel.attributedText = [Tool getAttributedTextWithTag:tag contentText:nameString];
     
-    self.lecturerNameLabel.text = [NSString stringWithFormat:@"讲师%@", _courseModel.lecturer.lecturerName];
+    self.lecturerNameLabel.text = [NSString stringWithFormat:@"讲师：%@", _courseModel.lecturer.lecturerName];
 }
 
 

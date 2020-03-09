@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PayOrderViewController : BaseViewController
 
 @property (nonatomic, copy) NSString *courseId;
+@property (nonatomic, copy) NSString *periodId;
 
 @end
 

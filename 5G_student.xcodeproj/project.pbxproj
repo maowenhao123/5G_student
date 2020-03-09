@@ -96,6 +96,8 @@
 		1D37350923C586BD0063E036 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D37350823C586BD0063E036 /* HomeViewController.m */; };
 		1D37350C23C586EB0063E036 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D37350B23C586EB0063E036 /* BaseNavigationController.m */; };
 		1D37371023C854F50063E036 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D37370F23C854F50063E036 /* MessageViewController.m */; };
+		1DA86DC72415E8BB00D57689 /* BuyCourseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA86DC52415E8BB00D57689 /* BuyCourseTableViewCell.m */; };
+		1DA86DC82415E8BB00D57689 /* BuyCourseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DA86DC62415E8BB00D57689 /* BuyCourseTableViewCell.xib */; };
 		1DB17B8D240F5C4A002E854F /* YBRectConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB17B85240F5C4A002E854F /* YBRectConst.m */; };
 		1DB17B8E240F5C4A002E854F /* YBPopupMenuPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB17B86240F5C4A002E854F /* YBPopupMenuPath.m */; };
 		1DB17B8F240F5C4A002E854F /* YBPopupMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB17B89240F5C4A002E854F /* YBPopupMenu.m */; };
@@ -534,6 +536,9 @@
 		1D37350B23C586EB0063E036 /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1D37370E23C854F50063E036 /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		1D37370F23C854F50063E036 /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		1DA86DC42415E8BB00D57689 /* BuyCourseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyCourseTableViewCell.h; sourceTree = "<group>"; };
+		1DA86DC52415E8BB00D57689 /* BuyCourseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyCourseTableViewCell.m; sourceTree = "<group>"; };
+		1DA86DC62415E8BB00D57689 /* BuyCourseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BuyCourseTableViewCell.xib; sourceTree = "<group>"; };
 		1DB17B83240F5C4A002E854F /* YBPopupMenuDeviceOrientationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBPopupMenuDeviceOrientationManager.h; sourceTree = "<group>"; };
 		1DB17B84240F5C4A002E854F /* YBPopupMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBPopupMenu.h; sourceTree = "<group>"; };
 		1DB17B85240F5C4A002E854F /* YBRectConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBRectConst.m; sourceTree = "<group>"; };
@@ -2282,6 +2287,9 @@
 		AA801E8E240CEA0D00183E2B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1DA86DC42415E8BB00D57689 /* BuyCourseTableViewCell.h */,
+				1DA86DC52415E8BB00D57689 /* BuyCourseTableViewCell.m */,
+				1DA86DC62415E8BB00D57689 /* BuyCourseTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2589,6 +2597,7 @@
 				AA2C8FED2404B34900879EB8 /* TeacherShowTableViewCell.xib in Resources */,
 				1D37347023C57EC60063E036 /* Assets.xcassets in Resources */,
 				AA2C8FE02403B7CA00879EB8 /* CourseTeacherTableViewCell.xib in Resources */,
+				1DA86DC82415E8BB00D57689 /* BuyCourseTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2802,6 +2811,7 @@
 				1D0970CC241239E60043A0D7 /* UIImage+GIF.m in Sources */,
 				AABACC7223F912F200B96B84 /* PGDatePicker+MonthDayHour.m in Sources */,
 				1D37371023C854F50063E036 /* MessageViewController.m in Sources */,
+				1DA86DC72415E8BB00D57689 /* BuyCourseTableViewCell.m in Sources */,
 				AA63CDDB23F50F4B000BACED /* NSObject+MJCoding.m in Sources */,
 				AA749ECA23F67A8100DBA896 /* PeriodModel.m in Sources */,
 				AA63CDCF23F50F4B000BACED /* MJRefreshAutoNormalFooter.m in Sources */,

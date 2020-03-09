@@ -97,6 +97,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = MBackgroundColor;
+        _tableView.estimatedRowHeight = 100;
         _tableView.tableFooterView = [UIView new];
         
         __weak typeof(self) wself = self;
@@ -121,7 +122,7 @@
 }
 
 #pragma mark - Setting
-- (void)setCourseType:(NSInteger)courseType
+- (void)setCourseType:(CourseType)courseType
 {
     _courseType = courseType;
 
@@ -146,7 +147,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return UITableViewAutomaticDimension;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

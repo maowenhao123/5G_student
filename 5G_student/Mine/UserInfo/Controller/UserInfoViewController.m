@@ -80,7 +80,7 @@
     self.hobbyPickerView = hobbyPickerView;
     __weak typeof(self) wself = self;
     hobbyPickerView.block = ^(NSDictionary * categoryDic, NSDictionary * subjectDic){
-        wself.userModel.nickname = [NSString stringWithFormat:@"%@ %@", categoryDic[@"categoryName"], subjectDic[@"categoryName"]];
+        wself.userModel.hobby = [NSString stringWithFormat:@"%@ %@", categoryDic[@"categoryName"], subjectDic[@"categoryName"]];
         [wself.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     };
 }
@@ -99,7 +99,7 @@
         @"headImgUrl": self.userModel.headImgUrl,
         @"nickname": self.userModel.nickname,
         @"area": @"",
-        @"hobby": @""
+        @"hobby": self.userModel.hobby
     };
     waitingView
     [[MHttpTool shareInstance] postWithParameters:parameters url:@"/user/auth/user/ext/update" success:^(id json) {

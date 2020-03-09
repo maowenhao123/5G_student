@@ -31,17 +31,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PeriodModel : NSObject
 
-@property (nonatomic, assign) NSInteger index;
-@property (nonatomic, assign) NSInteger auditStatus;
-@property (nonatomic, copy) NSString *docName;
-@property (nonatomic, copy) NSString *docUrl;
+@property (nonatomic, copy) NSString *course;
+@property (nonatomic, copy) NSString *date;
+@property (nonatomic, assign) NSInteger duration;
+@property (nonatomic, copy) NSString *endTime;
 @property (nonatomic, copy) NSString *id;
-@property (nonatomic, assign) BOOL isDoc;
-@property (nonatomic, assign) BOOL isFree;
-@property (nonatomic, copy) NSString *periodDesc;
+@property (nonatomic, assign) BOOL isRecord;
+@property (nonatomic, assign) NSInteger maxCount;
+@property (nonatomic, assign) NSInteger onlineCount;
+@property (nonatomic, copy) NSString *period;
+@property (nonatomic, copy) NSString *pullUrl;
+@property (nonatomic, copy) NSString *pushUrl;
+@property (nonatomic, copy) NSString *sdkAppId;
+@property (nonatomic, copy) NSString *sign;
+@property (nonatomic, copy) NSString *startTime;
 @property (nonatomic, copy) NSString *periodName;
-@property (nonatomic, assign) NSInteger periodOriginal;
-@property (nonatomic, assign) NSInteger sort;
 @property (nonatomic, strong) PeriodLiveModel *periodLive;
 @property (nonatomic, strong) PeriodVideoModel *periodVideo;
 

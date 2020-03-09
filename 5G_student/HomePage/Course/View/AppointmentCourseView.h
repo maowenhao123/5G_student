@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AppointmentCourseView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame courseId:(NSString *)courseId;
+@property (nonatomic, copy) NSString *courseId;
 
 @end
 

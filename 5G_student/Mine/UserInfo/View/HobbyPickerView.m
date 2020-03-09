@@ -160,6 +160,11 @@
     return self.categoryArray2[row];
 }
 
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return 36;
+}
+
 #pragma mark - UIPickerViewDelegate
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
