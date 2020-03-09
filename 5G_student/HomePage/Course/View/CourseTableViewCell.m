@@ -40,6 +40,14 @@
     self.nameLabel.attributedText = [Tool getAttributedTextWithTag:tag contentText:nameString];
     
     self.lecturerNameLabel.text = [NSString stringWithFormat:@"讲师：%@", _courseModel.lecturer.lecturerName];
+    
+    if (_courseModel.courseType == 1 || _courseModel.courseType == 3) {
+        self.statusLabel.text = @"";
+    }else if (_courseModel.courseType == 2)
+    {
+        self.statusLabel.text = [NSString stringWithFormat:@"%@", _courseModel.classTime];
+    }
+    
 }
 
 

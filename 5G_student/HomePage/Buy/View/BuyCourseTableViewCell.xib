@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名称" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWc-kM-KgF">
-                        <rect key="frame" x="15" y="15" width="290" height="26"/>
+                        <rect key="frame" x="15" y="15" width="290" height="25"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.16862745100000001" green="0.16862745100000001" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
                     <constraint firstItem="CWc-kM-KgF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="sHy-xr-g4B"/>
                     <constraint firstItem="fEN-tI-fSU" firstAttribute="trailing" secondItem="CWc-kM-KgF" secondAttribute="trailing" id="t9g-kQ-3CD"/>
                     <constraint firstAttribute="trailing" secondItem="CWc-kM-KgF" secondAttribute="trailing" constant="15" id="tsL-eH-ngb"/>
-                    <constraint firstItem="fEN-tI-fSU" firstAttribute="top" secondItem="CWc-kM-KgF" secondAttribute="bottom" constant="3" id="yAR-ev-51T"/>
+                    <constraint firstItem="fEN-tI-fSU" firstAttribute="top" secondItem="CWc-kM-KgF" secondAttribute="bottom" constant="4" id="yAR-ev-51T"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>

@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *courseOriginal;
 @property (nonatomic, assign) NSInteger courseType;
 @property (nonatomic, copy) NSString *gmtCreate;
+@property (nonatomic, copy) NSString *classTime;
 @property (nonatomic, copy) NSString *id;
 @property (nonatomic, assign) NSInteger isDelete;
 @property (nonatomic, assign) BOOL isFree;

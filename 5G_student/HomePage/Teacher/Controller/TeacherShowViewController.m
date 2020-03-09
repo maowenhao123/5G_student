@@ -7,8 +7,11 @@
 //
 
 #import "TeacherShowViewController.h"
+#import "TeacherShowCollectionView.h"
 
 @interface TeacherShowViewController ()
+
+@property (nonatomic, strong) TeacherShowCollectionView *teacherShowCollectionView;
 
 @end
 
@@ -18,16 +21,23 @@
 {
     [super viewDidLoad];
     self.title = @"才艺展示";
+    [self setupUI];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - 布局子视图
+- (void)setupUI
+{
+    [self.view addSubview:self.teacherShowCollectionView];
+    self.teacherShowCollectionView.lecturerModel = self.lecturerModel;
 }
-*/
+
+#pragma mark - Getting
+- (TeacherShowCollectionView *)teacherShowCollectionView
+{
+    if (!_teacherShowCollectionView) {
+         _teacherShowCollectionView = [[TeacherShowCollectionView alloc] initWithFrame:CGRectMake(0, 0, MScreenWidth, MScreenHeight)];
+    }
+    return _teacherShowCollectionView;
+}
 
 @end

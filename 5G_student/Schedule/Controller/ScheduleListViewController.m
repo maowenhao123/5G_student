@@ -25,7 +25,6 @@
     [super viewDidLoad];
     [self setupUI];
     waitingView
-    self.status = 1;
     self.pageCurrent = 1;
     [self getCourseData];
 }
@@ -44,11 +43,14 @@
         courseType = 3;
     }
     NSDictionary *parameters = @{
-        @"status": @(self.status),
         @"courseType": @(courseType),
         @"pageCurrent": @(self.pageCurrent),
         @"pageSize": MPageSize
     };
+    NSMutableDictionary *parameters_mu = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    if (self.status != -1) {
+        [parameters_mu setValue:@(self.status) forKey:@"status"];
+    }
     [[MHttpTool shareInstance] postWithParameters:parameters url:@"/course/auth/order/info/list" success:^(id json) {
         [MBProgressHUD hideHUDForView:self.view];
         if (SUCCESS) {

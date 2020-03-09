@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString * lecturerMobile;
 @property (nonatomic, copy) NSString * lecturerName;
 @property (nonatomic, copy) NSString * lecturerProportion;
+@property (nonatomic, copy) NSString * pictures;
+@property (nonatomic, copy) NSString * videos;
 @property (nonatomic, copy) NSString * position;
 @property (nonatomic, copy) NSString * sort;
 @property (nonatomic, assign) NSInteger status;

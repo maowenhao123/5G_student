@@ -63,7 +63,9 @@
 
 - (void)moreButtonDidClick
 {
-    [self.viewController.navigationController pushViewController:[TeacherShowViewController new] animated:YES];
+    TeacherShowViewController * teacherVC = [TeacherShowViewController new];
+    teacherVC.lecturerModel = self.lecturerModel;
+    [self.viewController.navigationController pushViewController:teacherVC animated:YES];
 }
 
 @end

@@ -16,37 +16,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabber_groupon_selected" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U0H-P6-jUO">
-                        <rect key="frame" x="15" y="10" width="137.5" height="100"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="100" id="rug-vZ-VcH"/>
-                        </constraints>
-                    </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabber_groupon_selected" translatesAutoresizingMaskIntoConstraints="NO" id="HTN-87-SH1">
-                        <rect key="frame" x="167.5" y="10" width="137.5" height="100"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="100" id="CbU-Wj-ePT"/>
-                        </constraints>
-                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uQD-n2-mAk" customClass="TeacherShowCollectionView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="HTN-87-SH1" firstAttribute="width" secondItem="U0H-P6-jUO" secondAttribute="width" id="EvC-fb-tdl"/>
-                    <constraint firstItem="U0H-P6-jUO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="In0-H9-lxW"/>
-                    <constraint firstItem="U0H-P6-jUO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Lzf-Ir-b68"/>
-                    <constraint firstItem="HTN-87-SH1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ul7-sk-xdS"/>
-                    <constraint firstItem="HTN-87-SH1" firstAttribute="leading" secondItem="U0H-P6-jUO" secondAttribute="trailing" constant="15" id="rzL-QU-Ejc"/>
-                    <constraint firstAttribute="trailing" secondItem="HTN-87-SH1" secondAttribute="trailing" constant="15" id="tk5-ZH-px2"/>
+                    <constraint firstItem="uQD-n2-mAk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="NFM-yT-Dg0"/>
+                    <constraint firstAttribute="trailing" secondItem="uQD-n2-mAk" secondAttribute="trailing" id="UK1-BA-w0T"/>
+                    <constraint firstItem="uQD-n2-mAk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="skh-Ae-xLQ"/>
+                    <constraint firstAttribute="bottom" secondItem="uQD-n2-mAk" secondAttribute="bottom" id="uz3-1V-oJD"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="showImageView1" destination="U0H-P6-jUO" id="m4T-0o-leT"/>
-                <outlet property="showImageView2" destination="HTN-87-SH1" id="Tg1-EY-DFn"/>
+                <outlet property="teacherShowCollectionView" destination="uQD-n2-mAk" id="uZn-fg-Mhl"/>
             </connections>
             <point key="canvasLocation" x="-12" y="88"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="tabber_groupon_selected" width="24" height="24"/>
-    </resources>
 </document>

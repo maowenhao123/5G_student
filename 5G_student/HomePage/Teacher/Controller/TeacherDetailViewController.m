@@ -198,6 +198,7 @@
         if (section == 1) {
             headerView.titleLabel.text = @"才艺展示";
             headerView.moreButton.hidden = NO;
+            headerView.lecturerModel = self.lecturerModel;
         }else if (section == 2)
         {
             headerView.titleLabel.text = @"课程";
@@ -217,7 +218,7 @@
 {
     if (indexPath.section == 1)
     {
-        return 120;
+        return 130;
     }
     return UITableViewAutomaticDimension;
 }

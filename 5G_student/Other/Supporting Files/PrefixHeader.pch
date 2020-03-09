@@ -78,6 +78,8 @@
 #define MDefaultColor MColor(237, 111, 45, 1)
 //副色
 #define MViceColor MColor(247, 204, 70, 1)
+//占位色
+#define MPlaceholderColor MGrayLineColor
 
 //字符串是否为空
 #define MStringIsEmpty(str) ([str isKindOfClass:[NSNull class]] || str == nil || [str length] == 0) || [str isEqualToString:@"(null)"]

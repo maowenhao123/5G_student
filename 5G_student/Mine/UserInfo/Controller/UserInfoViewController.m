@@ -12,6 +12,7 @@
 #import "UserAvatarTableViewCell.h"
 #import "UserInfoTableViewCell.h"
 #import "HobbyPickerView.h"
+#import "AreaPickerView.h"
 #import "HXPhotoPicker.h"
 #import "UserModel.h"
 
@@ -21,6 +22,7 @@
 @property (strong, nonatomic) HXPhotoManager *photoManager;
 @property (strong, nonatomic) UserModel *userModel;
 @property (nonatomic, weak) HobbyPickerView * hobbyPickerView;
+@property (nonatomic, weak) AreaPickerView * areaPickerView;
 
 @end
 
@@ -75,10 +77,18 @@
     [confirmButton addTarget:self action:@selector(confirmButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:confirmButton];
     
+    //选择地区
+    AreaPickerView * areaPickerView = [[AreaPickerView alloc] init];
+    self.areaPickerView = areaPickerView;
+    __weak typeof(self) wself = self;
+    areaPickerView.block = ^(NSDictionary * categoryDic, NSDictionary * subjectDic){
+        wself.userModel.area = [NSString stringWithFormat:@"%@ %@", categoryDic[@"categoryName"], subjectDic[@"categoryName"]];
+        [wself.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    };
+    
     //选择爱好
     HobbyPickerView * hobbyPickerView = [[HobbyPickerView alloc] init];
     self.hobbyPickerView = hobbyPickerView;
-    __weak typeof(self) wself = self;
     hobbyPickerView.block = ^(NSDictionary * categoryDic, NSDictionary * subjectDic){
         wself.userModel.hobby = [NSString stringWithFormat:@"%@ %@", categoryDic[@"categoryName"], subjectDic[@"categoryName"]];
         [wself.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
@@ -244,6 +254,9 @@
         changeNickNameVC.text = self.userModel.nickname;
         changeNickNameVC.delegate = self;
         [self.navigationController pushViewController:changeNickNameVC animated:YES];
+    }else if (indexPath.row == 2)
+    {
+        [self.areaPickerView show];
     }else if (indexPath.row == 3)
     {
         [self.hobbyPickerView show];
