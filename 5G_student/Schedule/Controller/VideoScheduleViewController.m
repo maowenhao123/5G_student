@@ -9,9 +9,12 @@
 #import "VideoScheduleViewController.h"
 #import "VideoScheduleInfoTableViewCell.h"
 #import "VideoSchedulePeriodTableViewCell.h"
+#import "SJVideoPlayer.h"
+#import "AppDelegate.h"
 
 @interface VideoScheduleViewController ()<UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) SJVideoPlayer *videoPlayer;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) CourseModel *courseModel;
 @property (nonatomic, assign) NSInteger selectedIndex;
@@ -20,6 +23,36 @@
 
 @implementation VideoScheduleViewController
 
+#pragma mark - 控制器
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    appDelegate.allowRotation = YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.videoPlayer vc_viewDidAppear];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.videoPlayer vc_viewWillDisappear];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    appDelegate.allowRotation = NO;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.videoPlayer vc_viewDidDisappear];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -27,6 +60,16 @@
     [self setupUI];
     self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     [self getCourseData];
+}
+
+- (BOOL)prefersHomeIndicatorAutoHidden
+{
+    return YES;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - 请求数据
@@ -42,6 +85,10 @@
             CourseModel *courseModel = [CourseModel mj_objectWithKeyValues:json[@"data"]];
             courseModel.periodList = [PeriodModel mj_objectArrayWithKeyValuesArray:json[@"data"][@"periodList"]];
             self.courseModel = courseModel;
+            if (courseModel.periodList.count > 0) {
+                PeriodModel *periodModel = self.courseModel.periodList[0];
+                [self getVideoUrlWithVideoNo:periodModel.periodVideo.videoNo];
+            }
             [self.tableView reloadData];
         }else
         {
@@ -53,10 +100,36 @@
     }];
 }
 
+- (void)getVideoUrlWithVideoNo:(NSString *)videoNo
+{
+    self.videoPlayer.URLAsset = [[SJVideoPlayerURLAsset alloc] initWithURL:[NSURL URLWithString:@"https://zyimg.dahe.cn/bce6c31b-66e6-45a0-b796-39b9a0ae5b09.m3u8"]];
+    return;
+    
+    if (MStringIsEmpty(videoNo)) {
+        return;
+    }
+    
+    NSDictionary *parameters = @{
+        @"videoNo": videoNo
+    };
+    [[MHttpTool shareInstance] postWithParameters:parameters url:@"/course/auth/course/chapter/period/audit/video" success:^(id json) {
+        if (SUCCESS) {
+            //            self.playerView.url = [NSURL URLWithString:json[@"data"]];
+        }else
+        {
+            ShowErrorView
+        }
+    } failure:^(NSError *error) {
+        MLog(@"error:%@",error);
+        
+    }];
+}
+
 #pragma mark - 布局子视图
 - (void)setupUI
 {
     [self.view addSubview:self.tableView];
+    self.tableView.tableHeaderView = self.videoPlayer.view;
     
     //底部
     CGFloat bottomViewH = 60;
@@ -102,6 +175,31 @@
 }
 
 #pragma mark - Getting
+- (SJVideoPlayer *)videoPlayer
+{
+    if (!_videoPlayer) {
+        _videoPlayer = [SJVideoPlayer player];
+        _videoPlayer.view.frame = CGRectMake(0, 0, MScreenWidth, MStatusBarH + 250);
+        _videoPlayer.defaultEdgeControlLayer.hiddenBackButtonWhenOrientationIsPortrait = YES;
+        _videoPlayer.defaultEdgeControlLayer.bottomProgressIndicatorHeight = 3;
+        SJVideoPlayer.update(^(SJVideoPlayerSettings * _Nonnull commonSettings) {
+            commonSettings.bottomIndicator_traceColor = MDefaultColor;
+            commonSettings.progress_traceColor = MDefaultColor;
+        });
+        __weak typeof(self) wself = self;
+        _videoPlayer.rotationObserver.rotationDidStartExeBlock = ^(id<SJRotationManager>  _Nonnull mgr) {
+            __strong typeof(self) sself = wself;
+            if (!mgr.isFullscreen) {
+                [sself->_videoPlayer needShowStatusBar];
+            }else
+            {
+                [sself->_videoPlayer needHiddenStatusBar];
+            }
+        };
+    }
+    return _videoPlayer;
+}
+
 - (UITableView *)tableView
 {
     if (_tableView == nil) {
@@ -191,6 +289,9 @@
         }
         self.selectedIndex = indexPath.row;
         [self.tableView reloadData];
+        
+        PeriodModel *periodModel = self.courseModel.periodList[indexPath.row];
+        [self getVideoUrlWithVideoNo:periodModel.periodVideo.videoNo];
     }
 }
 

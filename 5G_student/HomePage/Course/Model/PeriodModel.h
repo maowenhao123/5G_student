@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *videoLength;
 @property (nonatomic, copy) NSString *videoName;
 @property (nonatomic, copy) NSString * videoNo;
+@property (nonatomic, copy) NSString * videoUrl;
 @property (nonatomic, assign) NSInteger videoStatus;
 @property (nonatomic, assign) NSInteger videoVid;
 

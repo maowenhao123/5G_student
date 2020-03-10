@@ -40,6 +40,11 @@
     self.modalPresentationStyle = UIModalPresentationFullScreen;
 }
 
+- (UIViewController *)childViewControllerForStatusBarStyle
+{
+    return self.topViewController;
+}
+
 #pragma mark - 跳转下个页面
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {

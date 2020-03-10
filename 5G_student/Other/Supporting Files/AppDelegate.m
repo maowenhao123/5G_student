@@ -7,8 +7,8 @@
 //
 
 #import <UserNotifications/UserNotifications.h>
-#import "AppDelegate.h"
 #import "TXLiteAVSDK_Professional/TXLiveBase.h"
+#import "AppDelegate.h"
 
 @interface AppDelegate ()
 
@@ -85,5 +85,13 @@
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 }
 
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    if (self.allowRotation) {
+        return UIInterfaceOrientationMaskAllButUpsideDown;
+    }else
+    {
+        return UIInterfaceOrientationMaskPortrait;
+    }
+}
 
 @end
