@@ -238,16 +238,16 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     CourseModel *courseModel = self.courseArray[indexPath.row];
-    if (courseModel.courseType == 1) {
-        VideoScheduleViewController * videoScheduleVC = [[VideoScheduleViewController alloc] init];
-        videoScheduleVC.courseId = courseModel.id;
-        [self.navigationController pushViewController:videoScheduleVC animated:YES];
-    }else
-    {
+//    if (courseModel.courseType == 1) {
+//        VideoScheduleViewController * videoScheduleVC = [[VideoScheduleViewController alloc] init];
+//        videoScheduleVC.courseId = courseModel.id;
+//        [self.navigationController pushViewController:videoScheduleVC animated:YES];
+//    }else
+//    {
         CourseDetailViewController * courseDetailVC = [[CourseDetailViewController alloc] init];
         courseDetailVC.courseId = courseModel.id;
         [self.navigationController pushViewController:courseDetailVC animated:YES];
-    }
+//    }
 }
 
 #pragma mark - 通过类名找view的subview

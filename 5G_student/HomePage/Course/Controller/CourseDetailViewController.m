@@ -7,6 +7,7 @@
 //
 
 #import "CourseDetailViewController.h"
+#import "LiveViewController.h"
 #import "TeacherDetailViewController.h"
 #import "CourseInfoTableViewCell.h"
 #import "CouresPeriodTableViewCell.h"
@@ -37,7 +38,7 @@
 - (void)getCourseData
 {
     NSDictionary *parameters = @{
-        @"courseId": self.courseId
+        @"courseId": @(self.courseId)
     };
     waitingView
     [[MHttpTool shareInstance] postWithParameters:parameters url:@"/course/auth/course/view" success:^(id json) {

@@ -43,7 +43,7 @@
         self.infoLabel.text = [NSString stringWithFormat:@"共%ld讲", _courseModel.periodList.count];
     }else if (_courseModel.courseType == 3)
     {
-        if (!MStringIsEmpty(self.periodId)) {
+        if (self.periodId > 0) {
             [self getPeriodDataWithCourseId:_courseModel.id];
         }
     }
@@ -52,10 +52,10 @@
 }
 
 #pragma mark - 请求数据
-- (void)getPeriodDataWithCourseId:(NSString *)courseId
+- (void)getPeriodDataWithCourseId:(NSInteger)courseId
 {
     NSDictionary *parameters = @{
-        @"courseId": courseId
+        @"courseId": @(courseId)
     };
     [[MHttpTool shareInstance] postWithParameters:parameters url:@"/course/auth/course/user/period/list" success:^(id json) {
         [MBProgressHUD hideHUDForView:self.contentView];
@@ -63,7 +63,7 @@
             NSArray * dataArray = [PeriodModel mj_objectArrayWithKeyValuesArray:json[@"data"][@"list"]];
             PeriodModel * selPeriodModel;
             for (PeriodModel * periodModel in dataArray) {
-                if ([self.periodId isEqualToString:periodModel.id]) {
+                if (self.periodId == periodModel.id) {
                     selPeriodModel = periodModel;
                     break;
                 }

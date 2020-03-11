@@ -47,7 +47,6 @@
     {
         self.statusLabel.text = [NSString stringWithFormat:@"%@", _courseModel.classTime];
     }
-    
 }
 
 

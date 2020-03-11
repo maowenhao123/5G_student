@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BuyCourseTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) CourseModel *courseModel;
-@property (nonatomic, copy) NSString *periodId;
+@property (nonatomic, assign) NSInteger periodId;
 
 @end
 

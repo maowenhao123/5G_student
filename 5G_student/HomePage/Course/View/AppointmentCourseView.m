@@ -34,10 +34,10 @@
 }
 
 #pragma mark - 请求数据
-- (void)getPeriodDataWithCourseId:(NSString *)courseId
+- (void)getPeriodDataWithCourseId:(NSInteger)courseId
 {
     NSDictionary *parameters = @{
-        @"courseId": courseId
+        @"courseId": @(courseId)
     };
     [MBProgressHUD showMessage:@"" toView:self.contentView];
     [[MHttpTool shareInstance] postWithParameters:parameters url:@"/course/auth/course/user/period/list" success:^(id json) {
@@ -71,7 +71,7 @@
 }
 
 #pragma mark - Setting
-- (void)setCourseId:(NSString *)courseId
+- (void)setCourseId:(NSInteger)courseId
 {
     _courseId = courseId;
 
@@ -232,20 +232,29 @@
         [periodButton setTitle:periodTime forState:UIControlStateNormal];
         [periodButton setTitleColor:MBlackTextColor forState:UIControlStateNormal];
         [periodButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [periodButton setTitleColor:MGrayTextColor forState:UIControlStateDisabled];
         periodButton.titleLabel.font = [UIFont systemFontOfSize:15];
         periodButton.layer.cornerRadius = periodButton.height / 2;
         periodButton.layer.masksToBounds = YES;
-        if (i == 0) {
-            periodButton.selected = YES;
-            periodButton.backgroundColor = MDefaultColor;
-            periodButton.layer.borderWidth = 0;
-            self.selPeriodButton = periodButton;
-        }else
-        {
-            periodButton.selected = NO;
+        if (periodModel.reserveUserId != 0) {//已经有人预约
+            periodButton.enabled = NO;
             periodButton.backgroundColor = [UIColor whiteColor];
             periodButton.layer.borderColor = MGrayLineColor.CGColor;
             periodButton.layer.borderWidth = 1;
+        }else
+        {
+            if (i == 0) {
+                periodButton.selected = YES;
+                periodButton.backgroundColor = MDefaultColor;
+                periodButton.layer.borderWidth = 0;
+                self.selPeriodButton = periodButton;
+            }else
+            {
+                periodButton.selected = NO;
+                periodButton.backgroundColor = [UIColor whiteColor];
+                periodButton.layer.borderColor = MGrayLineColor.CGColor;
+                periodButton.layer.borderWidth = 1;
+            }
         }
         [periodButton addTarget:self action:@selector(periodButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.periodView addSubview:periodButton];

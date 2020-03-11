@@ -87,7 +87,7 @@
             self.courseModel = courseModel;
             if (courseModel.periodList.count > 0) {
                 PeriodModel *periodModel = self.courseModel.periodList[0];
-                [self getVideoUrlWithVideoNo:periodModel.periodVideo.videoNo];
+                [self getVideoUrlWithPeriodId:periodModel.id];
             }
             [self.tableView reloadData];
         }else
@@ -100,21 +100,16 @@
     }];
 }
 
-- (void)getVideoUrlWithVideoNo:(NSString *)videoNo
+- (void)getVideoUrlWithPeriodId:(NSInteger)periodId
 {
-    self.videoPlayer.URLAsset = [[SJVideoPlayerURLAsset alloc] initWithURL:[NSURL URLWithString:@"https://zyimg.dahe.cn/bce6c31b-66e6-45a0-b796-39b9a0ae5b09.m3u8"]];
-    return;
-    
-    if (MStringIsEmpty(videoNo)) {
-        return;
-    }
-    
+//    self.videoPlayer.URLAsset = [[SJVideoPlayerURLAsset alloc] initWithURL:[NSURL URLWithString:@"https://zyimg.dahe.cn/bce6c31b-66e6-45a0-b796-39b9a0ae5b09.m3u8"]];
+//    return;
     NSDictionary *parameters = @{
-        @"videoNo": videoNo
+        @"periodId": @(periodId)
     };
-    [[MHttpTool shareInstance] postWithParameters:parameters url:@"/course/auth/course/chapter/period/audit/video" success:^(id json) {
+    [[MHttpTool shareInstance] postWithParameters:parameters url:@"/course/auth/course/user/period/video" success:^(id json) {
         if (SUCCESS) {
-            //            self.playerView.url = [NSURL URLWithString:json[@"data"]];
+            self.videoPlayer.URLAsset = [[SJVideoPlayerURLAsset alloc] initWithURL:[NSURL URLWithString:json[@"data"]]];
         }else
         {
             ShowErrorView
@@ -132,11 +127,7 @@
     self.tableView.tableHeaderView = self.videoPlayer.view;
     
     //底部
-    CGFloat bottomViewH = 60;
-    if (IsBangIPhone) {
-        bottomViewH = 50 + MSafeBottomMargin;
-    }
-    UIView * bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, MScreenHeight - bottomViewH, MScreenWidth, bottomViewH)];
+    UIView * bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, MScreenHeight - (50 + MSafeBottomMargin), MScreenWidth, 50 + MSafeBottomMargin)];
     bottomView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:bottomView];
     
@@ -145,13 +136,10 @@
     [bottomView addSubview:bottomLine];
     
     UIButton * consultButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    consultButton.frame = CGRectMake(MMargin, 10, MScreenWidth - 2 * MMargin, 40);
-    consultButton.backgroundColor = MDefaultColor;
+    consultButton.frame = CGRectMake(MMargin, 0, MScreenWidth - 2 * MMargin, 50);
     [consultButton setTitle:@"联系老师" forState:UIControlStateNormal];
-    [consultButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [consultButton setTitleColor:MBlackTextColor forState:UIControlStateNormal];
     consultButton.titleLabel.font = [UIFont systemFontOfSize:16];
-    consultButton.layer.cornerRadius = consultButton.height / 2;
-    consultButton.layer.masksToBounds = YES;
     [consultButton addTarget:self action:@selector(consultButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:consultButton];
     
@@ -181,10 +169,13 @@
         _videoPlayer = [SJVideoPlayer player];
         _videoPlayer.view.frame = CGRectMake(0, 0, MScreenWidth, MStatusBarH + 250);
         _videoPlayer.defaultEdgeControlLayer.hiddenBackButtonWhenOrientationIsPortrait = YES;
-        _videoPlayer.defaultEdgeControlLayer.bottomProgressIndicatorHeight = 3;
+        _videoPlayer.defaultEdgeControlLayer.bottomProgressIndicatorHeight = 2;
         SJVideoPlayer.update(^(SJVideoPlayerSettings * _Nonnull commonSettings) {
             commonSettings.bottomIndicator_traceColor = MDefaultColor;
             commonSettings.progress_traceColor = MDefaultColor;
+            commonSettings.more_traceColor = MDefaultColor;
+            commonSettings.noNetworkButtonBackgroundColor = MDefaultColor;
+            commonSettings.playFailedButtonBackgroundColor = MDefaultColor;
         });
         __weak typeof(self) wself = self;
         _videoPlayer.rotationObserver.rotationDidStartExeBlock = ^(id<SJRotationManager>  _Nonnull mgr) {
@@ -203,11 +194,7 @@
 - (UITableView *)tableView
 {
     if (_tableView == nil) {
-        CGFloat bottomViewH = 60;
-        if (IsBangIPhone) {
-            bottomViewH = 50 + MSafeBottomMargin;
-        }
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MScreenWidth, MScreenHeight - bottomViewH) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MScreenWidth, MScreenHeight - 50 - MSafeBottomMargin) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = MBackgroundColor;
@@ -291,7 +278,7 @@
         [self.tableView reloadData];
         
         PeriodModel *periodModel = self.courseModel.periodList[indexPath.row];
-        [self getVideoUrlWithVideoNo:periodModel.periodVideo.videoNo];
+        [self getVideoUrlWithPeriodId:periodModel.id];
     }
 }
 

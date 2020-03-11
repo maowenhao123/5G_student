@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString * videoUrl;
 @property (nonatomic, assign) NSInteger videoStatus;
 @property (nonatomic, assign) NSInteger videoVid;
+@property (nonatomic, copy) NSString * reserveUserId;
 
 @end
 
@@ -36,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *date;
 @property (nonatomic, assign) NSInteger duration;
 @property (nonatomic, copy) NSString *endTime;
-@property (nonatomic, copy) NSString *id;
+@property (nonatomic, assign) NSInteger id;
 @property (nonatomic, assign) BOOL isRecord;
 @property (nonatomic, assign) NSInteger maxCount;
 @property (nonatomic, assign) NSInteger onlineCount;
@@ -47,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *sign;
 @property (nonatomic, copy) NSString *startTime;
 @property (nonatomic, copy) NSString *periodName;
+@property (nonatomic, assign) NSInteger reserveUserId;
 @property (nonatomic, strong) PeriodLiveModel *periodLive;
 @property (nonatomic, strong) PeriodVideoModel *periodVideo;
 

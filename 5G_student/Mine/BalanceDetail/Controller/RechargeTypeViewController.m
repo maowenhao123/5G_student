@@ -1,27 +1,25 @@
 //
-//  PayOrderViewController.m
+//  RechargeTypeViewController.m
 //  5G_student
 //
-//  Created by 毛文豪 on 2020/3/2.
+//  Created by dahe on 2020/3/10.
 //  Copyright © 2020 jiuge. All rights reserved.
 //
 
-#import "PayOrderViewController.h"
-#import "PaySuccessViewController.h"
+#import "RechargeTypeViewController.h"
 
-@interface PayOrderViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface RechargeTypeViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *dataArray;
 
 @end
 
-@implementation PayOrderViewController
+@implementation RechargeTypeViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"选择支付方式";
+    self.title = @"选择充值方式";
     [self setupUI];
 }
 
@@ -45,18 +43,11 @@
     return _tableView;
 }
 
-- (NSMutableArray *)dataArray
-{
-    if (!_dataArray) {
-        _dataArray = [NSMutableArray array];
-    }
-    return _dataArray;
-}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,14 +65,12 @@
         cell.detailTextLabel.textColor = MGrayTextColor;
     }
     cell.imageView.image = [UIImage imageNamed:@"tabber_groupon_selected"];
-    if (indexPath.row == 0) {
-        cell.textLabel.text = @"余额支付";
+    if (indexPath.row == 0)
+    {
+        cell.textLabel.text = @"微信";
     }else if (indexPath.row == 1)
     {
-        cell.textLabel.text = @"微信支付";
-    }else if (indexPath.row == 2)
-    {
-        cell.textLabel.text = @"支付宝支付";
+        cell.textLabel.text = @"支付宝";
     }
     CGSize itemSize = CGSizeMake(30, 30);
     UIGraphicsBeginImageContextWithOptions(itemSize, NO, UIScreen.mainScreen.scale);
@@ -103,20 +92,13 @@
     
     NSDictionary *parameters = @{
         @"payType": @(indexPath.row),
-        @"courseId": @(self.courseId)
+        @"money": @(self.money)
     };
-    NSMutableDictionary *parameters_mu = [NSMutableDictionary dictionaryWithDictionary:parameters];
-    if (self.periodId > 0) {
-        [parameters_mu setObject:@(self.periodId) forKey:@"periodId"];
-    }
     waitingView
-    [[MHttpTool shareInstance] postWithParameters:parameters_mu url:@"/course/auth/order/pay" success:^(id json) {
+    [[MHttpTool shareInstance] postWithParameters:parameters url:@"/user/auth/user/ext/charge" success:^(id json) {
         [MBProgressHUD hideHUDForView:self.view];
         if (SUCCESS) {
-            [MBProgressHUD showSuccess:@"购买成功"];
-            
-            PaySuccessViewController * paySuccessVC = [[PaySuccessViewController alloc] init];
-            [self.navigationController pushViewController:paySuccessVC animated:YES];
+            [MBProgressHUD showSuccess:@"充值成功"];
         }else
         {
             ShowErrorView

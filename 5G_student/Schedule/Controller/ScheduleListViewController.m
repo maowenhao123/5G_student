@@ -10,6 +10,7 @@
 #import "VideoScheduleViewController.h"
 #import "CourseDetailViewController.h"
 #import "CourseTableViewCell.h"
+#import "ScheduleModel.h"
 
 @interface ScheduleListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -55,7 +56,7 @@
     [[MHttpTool shareInstance] postWithParameters:parameters url:@"/course/auth/order/info/list" success:^(id json) {
         [MBProgressHUD hideHUDForView:self.view];
         if (SUCCESS) {
-           NSArray * dataArray = [CourseModel mj_objectArrayWithKeyValuesArray:json[@"data"][@"list"]];
+           NSArray * dataArray = [ScheduleModel mj_objectArrayWithKeyValuesArray:json[@"data"][@"list"]];
             if ([self.tableView.mj_header isRefreshing]) {
                 [self.courseArray removeAllObjects];
             }
@@ -144,7 +145,10 @@
     if (cell == nil) {
         cell = [[UINib nibWithNibName:@"CourseTableViewCell" bundle:nil] instantiateWithOwner:self options:nil].firstObject;
     }
-    cell.courseModel = self.courseArray[indexPath.row];
+    ScheduleModel * scheduleModel = self.courseArray[indexPath.row];
+    scheduleModel.course.courseType = scheduleModel.courseType;
+    scheduleModel.course.lecturer = scheduleModel.lecturer;
+    cell.courseModel = scheduleModel.course;
     return cell;
 }
 
@@ -157,15 +161,15 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    CourseModel *courseModel = self.courseArray[indexPath.row];
-    if (courseModel.courseType == 1) {
+    ScheduleModel * scheduleModel = self.courseArray[indexPath.row];
+    if (scheduleModel.courseType == 1) {
         VideoScheduleViewController * videoScheduleVC = [[VideoScheduleViewController alloc] init];
-        videoScheduleVC.courseId = courseModel.id;
+        videoScheduleVC.courseId = scheduleModel.courseId;
         [self.navigationController pushViewController:videoScheduleVC animated:YES];
     }else
     {
         CourseDetailViewController * courseDetailVC = [[CourseDetailViewController alloc] init];
-        courseDetailVC.courseId = courseModel.id;
+        courseDetailVC.courseId = scheduleModel.courseId;
         [self.navigationController pushViewController:courseDetailVC animated:YES];
     }
 }

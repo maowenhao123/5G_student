@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PlaceOrderViewController : BaseViewController
 
-@property (nonatomic, copy) NSString *courseId;
-@property (nonatomic, copy) NSString *periodId;
+@property (nonatomic, assign) NSInteger courseId;
+@property (nonatomic, assign) NSInteger periodId;
 
 @end
 

@@ -96,6 +96,7 @@
 		1D37350923C586BD0063E036 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D37350823C586BD0063E036 /* HomeViewController.m */; };
 		1D37350C23C586EB0063E036 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D37350B23C586EB0063E036 /* BaseNavigationController.m */; };
 		1D37371023C854F50063E036 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D37370F23C854F50063E036 /* MessageViewController.m */; };
+		1D4B23A024188B1E00670F33 /* ScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B239F24188B1E00670F33 /* ScheduleModel.m */; };
 		1D6A0148241773B400146230 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A0130241773B400146230 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		1D6A0149241773B400146230 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A0139241773B400146230 /* ViewController+MASAdditions.m */; };
 		1D6A014A241773B400146230 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A013D241773B400146230 /* MASCompositeConstraint.m */; };
@@ -258,6 +259,7 @@
 		1D6A037A241777D600146230 /* SJBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A0341241777D600146230 /* SJBaseTableViewCell.m */; };
 		1D6A03802417787400146230 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A037C2417787400146230 /* Reachability.m */; };
 		1D6A03812417787400146230 /* LICENCE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A037D2417787400146230 /* LICENCE.txt */; };
+		1D6A038F2417904A00146230 /* RechargeTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A038E2417904A00146230 /* RechargeTypeViewController.m */; };
 		1D6AFA0E24161BFA00146230 /* TeacherShowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6AFA0D24161BFA00146230 /* TeacherShowTableViewCell.xib */; };
 		1D6AFA1124161DDA00146230 /* TeacherShowCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6AFA1024161DDA00146230 /* TeacherShowCollectionView.m */; };
 		1D6AFA1424163D0500146230 /* VideoScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6AFA1324163D0500146230 /* VideoScheduleViewController.m */; };
@@ -706,6 +708,8 @@
 		1D37350B23C586EB0063E036 /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		1D37370E23C854F50063E036 /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		1D37370F23C854F50063E036 /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		1D4B239E24188B1E00670F33 /* ScheduleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleModel.h; sourceTree = "<group>"; };
+		1D4B239F24188B1E00670F33 /* ScheduleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleModel.m; sourceTree = "<group>"; };
 		1D6A012F241773B400146230 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		1D6A0130241773B400146230 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		1D6A0131241773B400146230 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -1066,6 +1070,8 @@
 		1D6A037C2417787400146230 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		1D6A037D2417787400146230 /* LICENCE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE.txt; sourceTree = "<group>"; };
 		1D6A037F2417787400146230 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		1D6A038D2417904A00146230 /* RechargeTypeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RechargeTypeViewController.h; sourceTree = "<group>"; };
+		1D6A038E2417904A00146230 /* RechargeTypeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RechargeTypeViewController.m; sourceTree = "<group>"; };
 		1D6AFA0D24161BFA00146230 /* TeacherShowTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeacherShowTableViewCell.xib; sourceTree = "<group>"; };
 		1D6AFA0F24161DDA00146230 /* TeacherShowCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherShowCollectionView.h; sourceTree = "<group>"; };
 		1D6AFA1024161DDA00146230 /* TeacherShowCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherShowCollectionView.m; sourceTree = "<group>"; };
@@ -3158,6 +3164,8 @@
 		AA5B38E42400044800EAA3DC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1D4B239E24188B1E00670F33 /* ScheduleModel.h */,
+				1D4B239F24188B1E00670F33 /* ScheduleModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3868,6 +3876,8 @@
 				1D09699A240F81EF0043A0D7 /* PointsDetailViewController.m */,
 				1D0969A6240FA0CE0043A0D7 /* RechargeViewController.h */,
 				1D0969A7240FA0CE0043A0D7 /* RechargeViewController.m */,
+				1D6A038D2417904A00146230 /* RechargeTypeViewController.h */,
+				1D6A038E2417904A00146230 /* RechargeTypeViewController.m */,
 				1D0969A9240FA0E60043A0D7 /* WithdrawViewController.h */,
 				1D0969AA240FA0E60043A0D7 /* WithdrawViewController.m */,
 			);
@@ -4191,6 +4201,7 @@
 				AA63CD4D23F42689000BACED /* NSTimer+HXExtension.m in Sources */,
 				AA63CD5423F42689000BACED /* HXAlbumListViewController.m in Sources */,
 				AA94750423FD10FD005BE3A6 /* CourseModel.m in Sources */,
+				1D4B23A024188B1E00670F33 /* ScheduleModel.m in Sources */,
 				AA63CD5223F42689000BACED /* HXPhotoModel.m in Sources */,
 				1D0970CB241239E60043A0D7 /* SDWebImageIndicator.m in Sources */,
 				AA63CDC823F50F4B000BACED /* NSBundle+MJRefresh.m in Sources */,
@@ -4489,6 +4500,7 @@
 				1D37347623C57EC60063E036 /* main.m in Sources */,
 				1D6A01DA241776EF00146230 /* SJFilmEditingInGIFRecordingsControlLayer.m in Sources */,
 				AA801EA0240E030600183E2B /* LiveViewController.m in Sources */,
+				1D6A038F2417904A00146230 /* RechargeTypeViewController.m in Sources */,
 				AA63CDD423F50F4B000BACED /* MJRefreshHeader.m in Sources */,
 				AA6C735723F2D73700C79056 /* IQNSArray+Sort.m in Sources */,
 				AA63CD6B23F42689000BACED /* HXPreviewVideoView.m in Sources */,

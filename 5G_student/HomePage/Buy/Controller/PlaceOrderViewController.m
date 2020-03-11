@@ -7,6 +7,7 @@
 //
 
 #import "PlaceOrderViewController.h"
+#import "PaySuccessViewController.h"
 #import "PayOrderViewController.h"
 #import "BuyCourseTableViewCell.h"
 
@@ -33,7 +34,7 @@
 - (void)getCourseData
 {
     NSDictionary *parameters = @{
-        @"courseId": self.courseId
+        @"courseId": @(self.courseId)
     };
     waitingView
     [[MHttpTool shareInstance] postWithParameters:parameters url:@"/course/auth/course/view" success:^(id json) {
@@ -110,10 +111,35 @@
 
 - (void)payButtonDidClick
 {
-    PayOrderViewController * payOrderVC = [[PayOrderViewController alloc] init];
-    payOrderVC.courseId = self.courseId;
-    payOrderVC.periodId = self.periodId;
-    [self.navigationController pushViewController:payOrderVC animated:YES];
+    NSDictionary *parameters = @{
+        @"courseId": @(self.courseId)
+    };
+    NSMutableDictionary *parameters_mu = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    if (self.periodId > 0) {
+        [parameters_mu setObject:@(self.periodId) forKey:@"periodId"];
+    }
+    waitingView
+    [[MHttpTool shareInstance] postWithParameters:parameters_mu url:@"/course/auth/order/signup" success:^(id json) {
+        [MBProgressHUD hideHUDForView:self.view];
+        if (SUCCESS) {
+            if ([json[@"data"][@"status"] intValue] == 1) {
+                PayOrderViewController * payOrderVC = [[PayOrderViewController alloc] init];
+                payOrderVC.courseId = self.courseId;
+                payOrderVC.periodId = self.periodId;
+                [self.navigationController pushViewController:payOrderVC animated:YES];
+            }else
+            {
+                PaySuccessViewController * paySuccessVC = [[PaySuccessViewController alloc] init];
+                [self.navigationController pushViewController:paySuccessVC animated:YES];
+            }
+        }else
+        {
+            ShowErrorView
+        }
+    } failure:^(NSError *error) {
+        MLog(@"error:%@",error);
+        [MBProgressHUD hideHUDForView:self.view];
+    }];
 }
 
 #pragma mark - Getting
