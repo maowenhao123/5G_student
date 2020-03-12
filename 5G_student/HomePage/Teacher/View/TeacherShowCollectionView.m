@@ -7,6 +7,7 @@
 //
 
 #import "TeacherShowCollectionView.h"
+#import "BaseVideoViewController.h"
 #import "TeacherShowCollectionViewCell.h"
 
 @interface TeacherShowCollectionView ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
@@ -115,6 +116,16 @@ NSString * const TeacherShowCollectionViewCellId = @"TeacherShowCollectionViewCe
     TeacherShowCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:TeacherShowCollectionViewCellId forIndexPath:indexPath];
     cell.dataDic = self.dataArray[indexPath.row];
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *dataDic = self.dataArray[indexPath.row];
+    if ([dataDic[@"type"] isEqualToString:@"video"]) {
+        BaseVideoViewController * videoVC = [[BaseVideoViewController alloc] init];
+        videoVC.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self.viewController presentViewController:videoVC animated:YES completion:nil];
+    }
 }
 
 @end

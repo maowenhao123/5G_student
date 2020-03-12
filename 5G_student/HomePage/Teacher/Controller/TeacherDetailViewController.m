@@ -34,6 +34,11 @@
     [self getCourseData];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 #pragma mark - 请求数据
 - (void)getTeacherData
 {

@@ -92,7 +92,7 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
-    if(viewController.view.tag == 2)
+    if(viewController.view.tag == 5)
     {
         LoginViewController * loginVC = [[LoginViewController alloc] init];
         BaseNavigationController * loginNVC = [[BaseNavigationController alloc] initWithRootViewController:loginVC];

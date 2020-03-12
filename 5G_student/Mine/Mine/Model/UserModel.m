@@ -8,7 +8,7 @@
 
 #import "UserModel.h"
 
-@implementation UserExtModel
+@implementation AccountModel
 
 @end
 

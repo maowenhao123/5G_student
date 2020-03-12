@@ -10,12 +10,15 @@
 #import "RechargeViewController.h"
 #import "WithdrawViewController.h"
 #import "BalanceDetailTableViewCell.h"
+#import "UserModel.h"
 
 @interface BalanceDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UILabel * balanceLabel;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, assign) NSInteger pageCurrent;
+@property (strong, nonatomic) NSMutableArray *balanceArray;
 
 @end
 
@@ -26,6 +29,66 @@
     [super viewDidLoad];
     self.title = @"余额明细";
     [self setupUI];
+    waitingView
+    [self getUserData];
+    self.pageCurrent = 1;
+    [self getBalanceDetailData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserData) name:@"RechargeSuccess" object:nil];
+}
+
+#pragma mark - 请求数据
+- (void)getUserData
+{
+    NSDictionary *parameters = @{
+    };
+    [[MHttpTool shareInstance] postWithParameters:parameters url:@"/user/auth/user/ext/view" success:^(id json) {
+        if (SUCCESS) {
+            UserModel *userModel = [UserModel mj_objectWithKeyValues:json[@"data"]];
+            self.balanceLabel.text = [NSString stringWithFormat:@"余额%ld元", userModel.account.balance];
+        }else
+        {
+            ShowErrorView
+        }
+    } failure:^(NSError *error) {
+        MLog(@"error:%@",error);
+    }];
+}
+
+- (void)getBalanceDetailData
+{
+    NSDictionary *parameters = @{
+        @"type": @(0),
+        @"pageCurrent": @(self.pageCurrent),
+        @"pageSize": MPageSize
+    };
+    [[MHttpTool shareInstance] postWithParameters:parameters url:@"/user/auth/lecturer/profit/log/list" success:^(id json) {
+        [MBProgressHUD hideHUDForView:self.view];
+        if (SUCCESS) {
+           NSArray * dataArray = [BalanceDetailModel mj_objectArrayWithKeyValuesArray:json[@"data"][@"list"]];
+            if ([self.tableView.mj_header isRefreshing]) {
+                [self.balanceArray removeAllObjects];
+            }
+            [self.balanceArray addObjectsFromArray:dataArray];
+            [self.tableView.mj_header endRefreshing];
+            if (dataArray.count == 0) {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }else
+            {
+                [self.tableView.mj_footer endRefreshing];
+            }
+           [self.tableView reloadData];
+        }else
+        {
+            ShowErrorView
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
+        }
+    } failure:^(NSError *error) {
+        MLog(@"error:%@",error);
+        [MBProgressHUD hideHUDForView:self.view];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+    }];
 }
 
 #pragma mark - 布局子视图
@@ -71,7 +134,6 @@
 {
     if (!_balanceLabel) {
         _balanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(MMargin, 0, MScreenWidth - MMargin - 120, self.headerView.height)];
-        _balanceLabel.text = @"余额2000元";
         _balanceLabel.font = [UIFont boldSystemFontOfSize:18];
         _balanceLabel.textColor = MBlackTextColor;
     }
@@ -87,8 +149,26 @@
         _tableView.backgroundColor = MBackgroundColor;
         _tableView.estimatedRowHeight = UITableViewAutomaticDimension;
         _tableView.tableFooterView = [UIView new];
+        
+        __weak typeof(self) wself = self;
+        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            wself.pageCurrent = 1;
+            [wself getBalanceDetailData];
+        }];
+        _tableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingBlock:^{
+            wself.pageCurrent ++;
+            [wself getBalanceDetailData];
+        }];
     }
     return _tableView;
+}
+
+- (NSMutableArray *)balanceArray
+{
+    if (!_balanceArray) {
+        _balanceArray = [NSMutableArray array];
+    }
+    return _balanceArray;
 }
 
 - (void)buttonDidClick:(UIButton *)button
@@ -104,7 +184,7 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.balanceArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -113,6 +193,7 @@
     if (cell == nil) {
         cell = [[UINib nibWithNibName:@"BalanceDetailTableViewCell" bundle:nil] instantiateWithOwner:self options:nil].firstObject;
     }
+    cell.balanceDetailModel = self.balanceArray[indexPath.row];
     return cell;
 }
 

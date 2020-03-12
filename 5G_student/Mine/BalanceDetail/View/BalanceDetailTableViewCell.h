@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BalanceDetailModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BalanceDetailTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) BalanceDetailModel * balanceDetailModel;
 
 @end
 

@@ -18,15 +18,20 @@
 
 @implementation BalanceDetailTableViewCell
 
-- (void)awakeFromNib
+- (void)setBalanceDetailModel:(BalanceDetailModel *)balanceDetailModel
 {
-    [super awakeFromNib];
+    _balanceDetailModel = balanceDetailModel;
     
-    self.titleLabel.text = @"购买课程：钢琴指法练习";
-    self.timeLabel.text = @"1月2日 12:01";
-    self.moneyLabel.text = @"- ¥100";
-    self.moneyLabel.textColor = MDefaultColor;
+    self.titleLabel.text = _balanceDetailModel.remark;
+    self.timeLabel.text = _balanceDetailModel.gmtCreate;
+    if (_balanceDetailModel.money < 0) {
+        self.moneyLabel.text = [NSString stringWithFormat:@"-¥%ld", -_balanceDetailModel.money];
+        self.moneyLabel.textColor = MDefaultColor;
+    }else
+    {
+        self.moneyLabel.text = [NSString stringWithFormat:@"+¥%ld", _balanceDetailModel.money];
+        self.moneyLabel.textColor = MDefaultColor;
+    }
 }
-
 
 @end

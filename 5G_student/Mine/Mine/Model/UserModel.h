@@ -10,25 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UserExtModel : NSObject
+@interface AccountModel : NSObject
 
-@property (nonatomic, copy) NSString * bankBranchName;
-@property (nonatomic, copy) NSString * bankCardNo;
-@property (nonatomic, copy) NSString * bankIdCardNo;
-@property (nonatomic, copy) NSString * bankName;
-@property (nonatomic, copy) NSString * bankUserName;
-@property (nonatomic, assign) NSInteger courseCount;
-@property (nonatomic, assign) NSInteger enableBalances;
-@property (nonatomic, assign) NSInteger fansCount;
-@property (nonatomic, assign) NSInteger freezeBalances;
-@property (nonatomic, copy) NSString * gmtCreate;
-@property (nonatomic, copy) NSString * gmtModified;
-@property (nonatomic, assign) NSInteger historyMoney;
-@property (nonatomic, copy) NSString * id;
-@property (nonatomic, copy) NSString * lecturerUserNo;
-@property (nonatomic, copy) NSString * sign;
-@property (nonatomic, assign) NSInteger sort;
-@property (nonatomic, assign) NSInteger statusId;
+@property (nonatomic, assign) NSInteger balance;
+@property (nonatomic, assign) NSInteger enableBalance;
+@property (nonatomic, assign) NSInteger freezeBalance;
 @property (nonatomic, assign) NSInteger totalIncome;
 
 @end
@@ -46,9 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString * area;
 @property (nonatomic, copy) NSString * hobby;
 @property (nonatomic, assign) NSInteger statusId;
-@property (nonatomic, strong) UserExtModel * userExtModel;
-@property (nonatomic, assign) NSInteger balance;
 @property (nonatomic, assign) NSInteger points;
+@property (nonatomic, strong) AccountModel * account;
 
 @end
 

@@ -87,7 +87,7 @@
             self.courseModel = courseModel;
             if (courseModel.periodList.count > 0) {
                 PeriodModel *periodModel = self.courseModel.periodList[0];
-                [self getVideoUrlWithPeriodId:periodModel.id];
+                [self getVideoUrlWithPeriodId:periodModel.periodVideo.videoNo];
             }
             [self.tableView reloadData];
         }else
@@ -104,10 +104,11 @@
 {
 //    self.videoPlayer.URLAsset = [[SJVideoPlayerURLAsset alloc] initWithURL:[NSURL URLWithString:@"https://zyimg.dahe.cn/bce6c31b-66e6-45a0-b796-39b9a0ae5b09.m3u8"]];
 //    return;
+    
     NSDictionary *parameters = @{
-        @"periodId": @(periodId)
+        @"periodVideo": @(periodId)
     };
-    [[MHttpTool shareInstance] postWithParameters:parameters url:@"/course/auth/course/user/period/video" success:^(id json) {
+    [[MHttpTool shareInstance] postWithParameters:parameters url:@"/course/auth/course/chapter/period/audit/video" success:^(id json) {
         if (SUCCESS) {
             self.videoPlayer.URLAsset = [[SJVideoPlayerURLAsset alloc] initWithURL:[NSURL URLWithString:json[@"data"]]];
         }else
@@ -278,7 +279,7 @@
         [self.tableView reloadData];
         
         PeriodModel *periodModel = self.courseModel.periodList[indexPath.row];
-        [self getVideoUrlWithPeriodId:periodModel.id];
+        [self getVideoUrlWithPeriodId:periodModel.periodVideo.videoNo];
     }
 }
 

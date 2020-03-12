@@ -191,7 +191,7 @@
             [MUserDefaultTool saveObject:json[@"data"][@"userno"] forKey:@"userno"];
             
             //登录成功通知
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSuccess" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccess" object:nil];
             
             //返回上上页面
             [self back];

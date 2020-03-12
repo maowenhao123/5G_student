@@ -8,6 +8,7 @@
 
 #import "MineViewController.h"
 #import "UserInfoViewController.h"
+#import "RechargeViewController.h"
 #import "MessageViewController.h"
 #import "MyAttentionViewController.h"
 #import "BalanceDetailViewController.h"
@@ -34,8 +35,14 @@
     [self setupUI];
     self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     [self getUserData];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserData) name:@"loginSuccess" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserData) name:@"updateUserInfo" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserData) name:@"LoginSuccess" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserData) name:@"UpdateUserInfo" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserData) name:@"RechargeSuccess" object:nil];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - 请求数据
@@ -65,7 +72,7 @@
 {
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, MScreenWidth, MScreenHeight - MTabBarH)];
     self.scrollView = scrollView;
-    scrollView.backgroundColor = [UIColor whiteColor];
+    scrollView.backgroundColor = MBackgroundColor;
     __weak typeof(self) wself = self;
     scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [wself getUserData];
@@ -115,9 +122,13 @@
         [topBgView addSubview:button];
     }
     
+    UIView * contentView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(topBgView.frame), MScreenWidth, 0)];
+    contentView.backgroundColor = [UIColor whiteColor];
+    [scrollView addSubview:contentView];
+    
     //邀请
     UIButton *inviteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    inviteButton.frame = CGRectMake(MMargin, CGRectGetMaxY(topBgView.frame) + 20, MScreenWidth - 2 * MMargin, 45);
+    inviteButton.frame = CGRectMake(MMargin, 20, MScreenWidth - 2 * MMargin, 45);
     inviteButton.backgroundColor = MViceColor;
     [inviteButton setTitle:@"邀请好友赚学费" forState:UIControlStateNormal];
     [inviteButton setTitleColor:MBlackTextColor forState:UIControlStateNormal];
@@ -125,7 +136,7 @@
     inviteButton.layer.masksToBounds = YES;
     inviteButton.layer.cornerRadius = inviteButton.height / 2;
     [inviteButton addTarget:self action:@selector(inviteButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
-    [scrollView addSubview:inviteButton];
+    [contentView addSubview:inviteButton];
     
     //功能
     NSArray * functionNames = @[
@@ -145,7 +156,7 @@
         }
         titleLabel.font = [UIFont systemFontOfSize:16];
         titleLabel.textColor = MBlackTextColor;
-        [scrollView addSubview:titleLabel];
+        [contentView addSubview:titleLabel];
         maxY = CGRectGetMaxY(titleLabel.frame);
         
         NSArray * subFunctionNames = functionNames[i];
@@ -154,7 +165,7 @@
             view.tag = 100 * i + j;
             UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(functionViewDidTap:)];
             [view addGestureRecognizer:tap];
-            [scrollView addSubview:view];
+            [contentView addSubview:view];
             if (j == subFunctionNames.count - 1) {
                 maxY = CGRectGetMaxY(view.frame);
             }
@@ -171,13 +182,8 @@
             [view addSubview:label];
         }
     }
-//    if (maxY + 10 > MScreenHeight - MTabBarH) {
-//        scrollView.height = MScreenHeight - MTabBarH;
-        scrollView.contentSize = CGSizeMake(MScreenWidth, maxY + 10);
-//    }else
-//    {
-//        scrollView.height = maxY + 10;
-//    }
+    contentView.height = maxY + 10;
+    scrollView.contentSize = CGSizeMake(MScreenWidth, CGRectGetMaxX(contentView.frame));
 }
 
 #pragma mark - Setting
@@ -192,7 +198,7 @@
     {
         self.nickNameLabel.text = _userModel.mobile;
     }
-    [self.balanceButton setAttributedTitle:[self getAttributedStringWithBigText:[NSString stringWithFormat:@"%ld", _userModel.balance] smallText:@"金额（元）"] forState:UIControlStateNormal];
+    [self.balanceButton setAttributedTitle:[self getAttributedStringWithBigText:[NSString stringWithFormat:@"%ld", _userModel.account.balance] smallText:@"金额（元）"] forState:UIControlStateNormal];
     [self.pointsButton setAttributedTitle:[self getAttributedStringWithBigText:[NSString stringWithFormat:@"%ld", _userModel.points] smallText:@"积分"] forState:UIControlStateNormal];
 }
 
@@ -221,7 +227,12 @@
 {
     NSInteger tag = tap.view.tag;
     if (tag < 100) {//我的账户
-        
+        if (tag == 0) {
+            
+        }else if (tag == 1)
+        {
+            [self.navigationController pushViewController:[RechargeViewController new] animated:YES];
+        }
     }else if (tag >= 100)//我的工具
     {
         if (tag == 100) {

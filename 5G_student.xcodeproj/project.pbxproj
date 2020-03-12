@@ -97,6 +97,8 @@
 		1D37350C23C586EB0063E036 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D37350B23C586EB0063E036 /* BaseNavigationController.m */; };
 		1D37371023C854F50063E036 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D37370F23C854F50063E036 /* MessageViewController.m */; };
 		1D4B23A024188B1E00670F33 /* ScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B239F24188B1E00670F33 /* ScheduleModel.m */; };
+		1D4B25F52418CFB500670F33 /* BaseVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B25F42418CFB500670F33 /* BaseVideoViewController.m */; };
+		1D4B270F241A0CF800670F33 /* BalanceDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B270E241A0CF700670F33 /* BalanceDetailModel.m */; };
 		1D6A0148241773B400146230 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A0130241773B400146230 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		1D6A0149241773B400146230 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A0139241773B400146230 /* ViewController+MASAdditions.m */; };
 		1D6A014A241773B400146230 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A013D241773B400146230 /* MASCompositeConstraint.m */; };
@@ -710,6 +712,10 @@
 		1D37370F23C854F50063E036 /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		1D4B239E24188B1E00670F33 /* ScheduleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleModel.h; sourceTree = "<group>"; };
 		1D4B239F24188B1E00670F33 /* ScheduleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleModel.m; sourceTree = "<group>"; };
+		1D4B25F32418CFB500670F33 /* BaseVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseVideoViewController.h; sourceTree = "<group>"; };
+		1D4B25F42418CFB500670F33 /* BaseVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseVideoViewController.m; sourceTree = "<group>"; };
+		1D4B270D241A0CF700670F33 /* BalanceDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceDetailModel.h; sourceTree = "<group>"; };
+		1D4B270E241A0CF700670F33 /* BalanceDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceDetailModel.m; sourceTree = "<group>"; };
 		1D6A012F241773B400146230 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		1D6A0130241773B400146230 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		1D6A0131241773B400146230 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -1825,6 +1831,8 @@
 				1D37350B23C586EB0063E036 /* BaseNavigationController.m */,
 				AA5B39062402494F00EAA3DC /* BaseWebViewController.h */,
 				AA5B39072402494F00EAA3DC /* BaseWebViewController.m */,
+				1D4B25F32418CFB500670F33 /* BaseVideoViewController.h */,
+				1D4B25F42418CFB500670F33 /* BaseVideoViewController.m */,
 				1D3734AA23C580BD0063E036 /* MainTabBarController.h */,
 				1D3734AB23C580BD0063E036 /* MainTabBarController.m */,
 			);
@@ -3863,6 +3871,8 @@
 		AA94750A23FD53B4005BE3A6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1D4B270D241A0CF700670F33 /* BalanceDetailModel.h */,
+				1D4B270E241A0CF700670F33 /* BalanceDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4193,6 +4203,7 @@
 				1D37350623C586AC0063E036 /* MineViewController.m in Sources */,
 				1D6A035B241777D600146230 /* UILabel+AsyncLoad.m in Sources */,
 				AA63CD3823F42689000BACED /* HXCustomCameraViewController.m in Sources */,
+				1D4B25F52418CFB500670F33 /* BaseVideoViewController.m in Sources */,
 				AA63CD6223F42689000BACED /* HXCustomAssetModel.m in Sources */,
 				AA2C8FDA2403B7B300879EB8 /* CourseInfoTableViewCell.m in Sources */,
 				AA801E93240CEA5D00183E2B /* PlaceOrderViewController.m in Sources */,
@@ -4539,6 +4550,7 @@
 				1D0970F1241239E60043A0D7 /* SDWebImageDownloaderRequestModifier.m in Sources */,
 				1D6A01F6241776EF00146230 /* SJVideoPlayerConst.m in Sources */,
 				1D6A029F241777A800146230 /* CALayer+SJBaseVideoPlayerExtended.m in Sources */,
+				1D4B270F241A0CF800670F33 /* BalanceDetailModel.m in Sources */,
 				1D6A0351241777D600146230 /* SJAttributesRecorder.m in Sources */,
 				AA5B3904240241B100EAA3DC /* TAAnimatedDotView.m in Sources */,
 				AA2C8FD52403B78B00879EB8 /* CouresPeriodTableViewCell.m in Sources */,

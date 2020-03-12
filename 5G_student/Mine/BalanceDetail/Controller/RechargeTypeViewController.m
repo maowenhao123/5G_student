@@ -99,6 +99,9 @@
         [MBProgressHUD hideHUDForView:self.view];
         if (SUCCESS) {
             [MBProgressHUD showSuccess:@"充值成功"];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RechargeSuccess" object:nil];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }else
         {
             ShowErrorView
