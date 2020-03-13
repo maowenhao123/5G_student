@@ -11,8 +11,11 @@
 #import "RechargeViewController.h"
 #import "MessageViewController.h"
 #import "MyAttentionViewController.h"
+#import "CouponListViewController.h"
+#import "PointsMallViewController.h"
 #import "BalanceDetailViewController.h"
 #import "PointsDetailViewController.h"
+#import "SettingViewController.h"
 #import "UserModel.h"
 
 @interface MineViewController ()
@@ -171,7 +174,9 @@
             }
             
             UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake((functionViewW - functionImageViewWH) / 2, 0, functionImageViewWH, functionImageViewWH)];
-            imageView.image = [UIImage imageNamed:@"tabber_groupon_selected"];
+            imageView.backgroundColor = MPlaceholderColor;
+            imageView.layer.masksToBounds = YES;
+            imageView.layer.cornerRadius = functionImageViewWH / 2;
             [view addSubview:imageView];
             
             UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(imageView.frame), functionViewW, 30)];
@@ -228,10 +233,13 @@
     NSInteger tag = tap.view.tag;
     if (tag < 100) {//我的账户
         if (tag == 0) {
-            
+            [self.navigationController pushViewController:[CouponListViewController new] animated:YES];
         }else if (tag == 1)
         {
             [self.navigationController pushViewController:[RechargeViewController new] animated:YES];
+        }else if (tag == 2)
+        {
+            [self.navigationController pushViewController:[PointsMallViewController new] animated:YES];
         }
     }else if (tag >= 100)//我的工具
     {
@@ -240,6 +248,9 @@
         }else if (tag == 101)
         {
             [self.navigationController pushViewController:[MyAttentionViewController new] animated:YES];
+        }else if (tag == 103)
+        {
+            [self.navigationController pushViewController:[SettingViewController new] animated:YES];
         }
     }
 }

@@ -42,7 +42,7 @@
     [self setupTabbars];
     [self getCategoryData];
     //接收去首页的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotoHomePage) name:@"gotoHomePage" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotoHomePage) name:@"GotoHomePage" object:nil];
     //接收个人中心的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotoMine) name:@"gotoMine" object:nil];
 }
@@ -53,6 +53,7 @@
 {
     self.selectedIndex = 0;
 }
+
 - (void)gotoMine
 {
     self.selectedIndex = 3;
@@ -92,7 +93,7 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
-    if(viewController.view.tag == 5)
+    if((viewController.view.tag == 3 || viewController.view.tag == 4) && MStringIsEmpty(Token))
     {
         LoginViewController * loginVC = [[LoginViewController alloc] init];
         BaseNavigationController * loginNVC = [[BaseNavigationController alloc] initWithRootViewController:loginVC];

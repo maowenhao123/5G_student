@@ -73,7 +73,7 @@
         cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
         cell.detailTextLabel.textColor = MGrayTextColor;
     }
-    cell.imageView.image = [UIImage imageNamed:@"tabber_groupon_selected"];
+    cell.imageView.backgroundColor = MPlaceholderColor;
     if (indexPath.row == 0) {
         cell.textLabel.text = @"余额支付";
     }else if (indexPath.row == 1)

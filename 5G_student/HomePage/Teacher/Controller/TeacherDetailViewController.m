@@ -223,7 +223,7 @@
 {
     if (indexPath.section == 1)
     {
-        return 130;
+        return 130 + MMargin * 2;
     }
     return UITableViewAutomaticDimension;
 }

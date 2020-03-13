@@ -9,6 +9,7 @@
 #import "CourseListViewController.h"
 #import "CourseDetailViewController.h"
 #import "CourseTableViewCell.h"
+#import "UITableView+NoData.h"
 
 @interface CourseListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -121,6 +122,7 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    [tableView showNoDataWithRowCount:self.courseArray.count];
     return self.courseArray.count;
 }
 

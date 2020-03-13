@@ -79,9 +79,9 @@ NSString * const TeacherShowCollectionViewCellId = @"TeacherShowCollectionViewCe
         layout.minimumLineSpacing = MMargin;
         layout.minimumInteritemSpacing = MMargin;
         CGFloat itemW = (MScreenWidth - 3 * MMargin) / 2;
-        layout.itemSize = CGSizeMake(itemW, 100);
+        layout.itemSize = CGSizeMake(itemW, 130);
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, MScreenWidth, 130) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, MScreenWidth, 130 + MMargin * 2) collectionViewLayout:layout];
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;

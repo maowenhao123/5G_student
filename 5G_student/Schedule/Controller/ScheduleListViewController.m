@@ -11,6 +11,7 @@
 #import "CourseDetailViewController.h"
 #import "CourseTableViewCell.h"
 #import "ScheduleModel.h"
+#import "UITableView+NoData.h"
 
 @interface ScheduleListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -136,6 +137,7 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    [tableView showNoDataWithRowCount:self.courseArray.count];
     return self.courseArray.count;
 }
 

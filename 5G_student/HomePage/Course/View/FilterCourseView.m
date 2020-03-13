@@ -33,7 +33,7 @@
 {
     self.backgroundColor = MColor(0, 0, 0, 0.0);
     
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeFromSuperview)];
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hidden)];
     tap.delegate = self;
     [self addGestureRecognizer:tap];
     
@@ -190,6 +190,17 @@
     [UIView animateWithDuration:0.2 animations:^{
         self.backgroundColor = MColor(0, 0, 0, 0.4);
         contentView.x = self.width - contentView.width;
+    }];
+}
+
+- (void)hidden
+{
+    //动画
+    [UIView animateWithDuration:0.2 animations:^{
+        self.backgroundColor = MColor(0, 0, 0, 0.0);
+        self.contentView.x = self.width;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
     }];
 }
 

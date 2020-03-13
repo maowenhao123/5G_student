@@ -7,6 +7,7 @@
 //
 
 #import "OnetooneViewController.h"
+#import "SearchViewController.h"
 #import "CourseListViewController.h"
 #import "SGPagingView.h"
 #import "MUserDefaultTool.h"
@@ -64,7 +65,8 @@
 
 - (void)searchBarDidClick
 {
-    
+    SearchViewController * searchVC = [[SearchViewController alloc] init];
+    [self.navigationController pushViewController:searchVC animated:NO];
 }
 
 - (void)sortBarDidClick

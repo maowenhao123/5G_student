@@ -105,12 +105,10 @@
 - (UISearchBar *)searchBar
 {
     if (!_searchBar) {
-        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(MMargin, MStatusBarH + (MNavBarH - 30) / 2, MScreenWidth - MMargin - 50, 30)];
-        _searchBar.searchBarStyle = UISearchBarStyleMinimal;
+        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(MMargin, MStatusBarH + (MNavBarH - 33) / 2, MScreenWidth - MMargin - 50, 33)];
         _searchBar.placeholder = @"搜老师/课程";
-        _searchBar.tintColor = MDefaultColor;
-        _searchBar.backgroundImage = [UIImage new];
         _searchBar.delegate = self;
+        _searchBar.backgroundImage = [UIImage new];
         
         UITextField * searchTextField = nil;
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 13.0) {

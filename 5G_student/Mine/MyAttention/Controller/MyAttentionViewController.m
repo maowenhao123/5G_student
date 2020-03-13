@@ -9,6 +9,7 @@
 #import "MyAttentionViewController.h"
 #import "TeacherDetailViewController.h"
 #import "TeacherTableViewCell.h"
+#import "UITableView+NoData.h"
 
 @interface MyAttentionViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -107,6 +108,7 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    [tableView showNoDataWithRowCount:self.teacherArray.count];
     return self.teacherArray.count;
 }
 
@@ -133,6 +135,31 @@
     TeacherModel *teacherModel = self.teacherArray[indexPath.row];
     teacherDetailVC.teacherId = teacherModel.lecturer.id;
     [self.navigationController pushViewController:teacherDetailVC animated:YES];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"取消关注";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString * url = @"/user/auth/user/focus/off";
+    TeacherModel *teacherModel = self.teacherArray[indexPath.row];
+    NSDictionary *parameters = @{
+        @"lecturerId": teacherModel.lecturer.id
+    };
+    [[MHttpTool shareInstance] postWithParameters:parameters url:url success:^(id json) {
+        if (SUCCESS) {
+            [self.teacherArray removeObjectAtIndex:indexPath.row];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }else
+        {
+            ShowErrorView
+        }
+    } failure:^(NSError *error) {
+        MLog(@"error:%@",error);
+    }];
 }
 
 @end

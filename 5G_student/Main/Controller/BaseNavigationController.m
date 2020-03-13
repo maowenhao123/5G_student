@@ -64,7 +64,7 @@
 #pragma mark - UINavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    BOOL hiddenNavBar = [viewController isKindOfClass:[NSClassFromString(@"LoginViewController") class]] || [viewController isKindOfClass:[NSClassFromString(@"HomeViewController") class]] || [viewController isKindOfClass:[NSClassFromString(@"CourseDetailViewController") class]] || [viewController isKindOfClass:[NSClassFromString(@"TeacherDetailViewController") class]] || [viewController isKindOfClass:[NSClassFromString(@"VideoScheduleViewController") class]] || [viewController isKindOfClass:[NSClassFromString(@"MineViewController") class]];
+    BOOL hiddenNavBar = [viewController isKindOfClass:[NSClassFromString(@"LoginViewController") class]] || [viewController isKindOfClass:[NSClassFromString(@"HomeViewController") class]] || [viewController isKindOfClass:[NSClassFromString(@"SearchViewController") class]] || [viewController isKindOfClass:[NSClassFromString(@"CourseDetailViewController") class]] || [viewController isKindOfClass:[NSClassFromString(@"TeacherDetailViewController") class]] || [viewController isKindOfClass:[NSClassFromString(@"VideoScheduleViewController") class]] || [viewController isKindOfClass:[NSClassFromString(@"MineViewController") class]];
     [navigationController setNavigationBarHidden:hiddenNavBar animated:YES];
 }
 

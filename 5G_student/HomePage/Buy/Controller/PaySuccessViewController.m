@@ -75,7 +75,7 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"gotoMine" object:nil];
             }else//返回首页
             {
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"gotoHomePage" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"GotoHomePage" object:nil];
             }
         });
     }];

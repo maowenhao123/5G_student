@@ -85,6 +85,8 @@
 		1D0970FC241239E60043A0D7 /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0970B9241239E60043A0D7 /* UIColor+HexString.m */; };
 		1D0970FD241239E60043A0D7 /* SDAssociatedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0970BA241239E60043A0D7 /* SDAssociatedObject.m */; };
 		1D0970FF24123A800043A0D7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D0970FE24123A800043A0D7 /* AVFoundation.framework */; };
+		1D222F05241B734E00C4701E /* CouponListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D222F04241B734E00C4701E /* CouponListViewController.m */; };
+		1D222F0C241B74D600C4701E /* PointsMallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D222F0B241B74D600C4701E /* PointsMallViewController.m */; };
 		1D37347023C57EC60063E036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D37346F23C57EC60063E036 /* Assets.xcassets */; };
 		1D37347623C57EC60063E036 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D37347523C57EC60063E036 /* main.m */; };
 		1D3734AC23C580BD0063E036 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3734AB23C580BD0063E036 /* MainTabBarController.m */; };
@@ -99,6 +101,8 @@
 		1D4B23A024188B1E00670F33 /* ScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B239F24188B1E00670F33 /* ScheduleModel.m */; };
 		1D4B25F52418CFB500670F33 /* BaseVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B25F42418CFB500670F33 /* BaseVideoViewController.m */; };
 		1D4B270F241A0CF800670F33 /* BalanceDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B270E241A0CF700670F33 /* BalanceDetailModel.m */; };
+		1D4B271D241A14C000670F33 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B271C241A14C000670F33 /* SettingViewController.m */; };
+		1D4B2723241A31F600670F33 /* UITableView+NoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B2722241A31F600670F33 /* UITableView+NoData.m */; };
 		1D6A0148241773B400146230 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A0130241773B400146230 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		1D6A0149241773B400146230 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A0139241773B400146230 /* ViewController+MASAdditions.m */; };
 		1D6A014A241773B400146230 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A013D241773B400146230 /* MASCompositeConstraint.m */; };
@@ -685,6 +689,10 @@
 		1D0970B9241239E60043A0D7 /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
 		1D0970BA241239E60043A0D7 /* SDAssociatedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDAssociatedObject.m; sourceTree = "<group>"; };
 		1D0970FE24123A800043A0D7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		1D222F03241B734E00C4701E /* CouponListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponListViewController.h; sourceTree = "<group>"; };
+		1D222F04241B734E00C4701E /* CouponListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponListViewController.m; sourceTree = "<group>"; };
+		1D222F0A241B74D600C4701E /* PointsMallViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PointsMallViewController.h; sourceTree = "<group>"; };
+		1D222F0B241B74D600C4701E /* PointsMallViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PointsMallViewController.m; sourceTree = "<group>"; };
 		1D37346023C57EC00063E036 /* 5G_student.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 5G_student.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D37346F23C57EC60063E036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D37347423C57EC60063E036 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -716,6 +724,10 @@
 		1D4B25F42418CFB500670F33 /* BaseVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseVideoViewController.m; sourceTree = "<group>"; };
 		1D4B270D241A0CF700670F33 /* BalanceDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceDetailModel.h; sourceTree = "<group>"; };
 		1D4B270E241A0CF700670F33 /* BalanceDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceDetailModel.m; sourceTree = "<group>"; };
+		1D4B271B241A14C000670F33 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		1D4B271C241A14C000670F33 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		1D4B2721241A31F600670F33 /* UITableView+NoData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+NoData.h"; sourceTree = "<group>"; };
+		1D4B2722241A31F600670F33 /* UITableView+NoData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+NoData.m"; sourceTree = "<group>"; };
 		1D6A012F241773B400146230 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		1D6A0130241773B400146230 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		1D6A0131241773B400146230 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -1772,6 +1784,72 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
+		1D222EFF241B732000C4701E /* Coupon */ = {
+			isa = PBXGroup;
+			children = (
+				1D222F02241B733700C4701E /* Controller */,
+				1D222F01241B733300C4701E /* Model */,
+				1D222F00241B732E00C4701E /* View */,
+			);
+			path = Coupon;
+			sourceTree = "<group>";
+		};
+		1D222F00241B732E00C4701E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1D222F01241B733300C4701E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1D222F02241B733700C4701E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1D222F03241B734E00C4701E /* CouponListViewController.h */,
+				1D222F04241B734E00C4701E /* CouponListViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1D222F06241B74B700C4701E /* PointsMall */ = {
+			isa = PBXGroup;
+			children = (
+				1D222F09241B74D000C4701E /* Controller */,
+				1D222F08241B74CB00C4701E /* Model */,
+				1D222F07241B74C700C4701E /* View */,
+			);
+			path = PointsMall;
+			sourceTree = "<group>";
+		};
+		1D222F07241B74C700C4701E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1D222F08241B74CB00C4701E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1D222F09241B74D000C4701E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1D222F0A241B74D600C4701E /* PointsMallViewController.h */,
+				1D222F0B241B74D600C4701E /* PointsMallViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		1D37345723C57EC00063E036 = {
 			isa = PBXGroup;
 			children = (
@@ -1958,6 +2036,8 @@
 				1D37370923C854330063E036 /* Mine */,
 				AA63CDEC23F515FF000BACED /* UserInfo */,
 				AA94750823FD539D005BE3A6 /* BalanceDetail */,
+				1D222EFF241B732000C4701E /* Coupon */,
+				1D222F06241B74B700C4701E /* PointsMall */,
 				AA6C72DE23E9716500C79056 /* MyAttention */,
 			);
 			path = Mine;
@@ -1977,6 +2057,8 @@
 			children = (
 				1D37350423C586AC0063E036 /* MineViewController.h */,
 				1D37350523C586AC0063E036 /* MineViewController.m */,
+				1D4B271B241A14C000670F33 /* SettingViewController.h */,
+				1D4B271C241A14C000670F33 /* SettingViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3756,6 +3838,8 @@
 				AA56068A23E942DC00F68017 /* UIImage+Category.m */,
 				AA6C731E23F2CC5100C79056 /* NSString+Category.h */,
 				AA6C731F23F2CC5100C79056 /* NSString+Category.m */,
+				1D4B2721241A31F600670F33 /* UITableView+NoData.h */,
+				1D4B2722241A31F600670F33 /* UITableView+NoData.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -4162,6 +4246,7 @@
 				AA63CD6023F42689000BACED /* HXPreviewLivePhotoView.m in Sources */,
 				1D6A0150241773B400146230 /* MASViewConstraint.m in Sources */,
 				1D0970D7241239E60043A0D7 /* SDImageIOCoder.m in Sources */,
+				1D222F0C241B74D600C4701E /* PointsMallViewController.m in Sources */,
 				AA63CDD323F50F4B000BACED /* MJRefreshFooter.m in Sources */,
 				AA63CD3E23F42689000BACED /* HXPhotoEditTransition.m in Sources */,
 				AA6D9E1323E914FC00B864F1 /* UIView+Category.m in Sources */,
@@ -4217,6 +4302,7 @@
 				1D0970CB241239E60043A0D7 /* SDWebImageIndicator.m in Sources */,
 				AA63CDC823F50F4B000BACED /* NSBundle+MJRefresh.m in Sources */,
 				AA2C8FF92404C2BA00879EB8 /* HomeHeaderFooterView.m in Sources */,
+				1D4B2723241A31F600670F33 /* UITableView+NoData.m in Sources */,
 				AABACC8623F912F200B96B84 /* PGDatePicker+MonthDay.m in Sources */,
 				1D6A01D2241776EF00146230 /* SJEdgeControlLayer.m in Sources */,
 				AA6C737723F2F20800C79056 /* AFNetworkReachabilityManager.m in Sources */,
@@ -4415,6 +4501,7 @@
 				1D6A01E4241776EF00146230 /* SJFullscreenCustomStatusBar.m in Sources */,
 				1D37371023C854F50063E036 /* MessageViewController.m in Sources */,
 				1D6A01CD241776EF00146230 /* SJNotReachableControlLayer.m in Sources */,
+				1D222F05241B734E00C4701E /* CouponListViewController.m in Sources */,
 				1D6A034D241777D600146230 /* SJUTRangeHandler.m in Sources */,
 				1DA86DC72415E8BB00D57689 /* BuyCourseTableViewCell.m in Sources */,
 				AA63CDDB23F50F4B000BACED /* NSObject+MJCoding.m in Sources */,
@@ -4563,6 +4650,7 @@
 				1D6A029D241777A800146230 /* SJSubtitleItem.m in Sources */,
 				1D6A0379241777D600146230 /* SJBaseCollectionViewCell.m in Sources */,
 				AABACC8923F912F200B96B84 /* PGDatePicker+DateHourMinuteSecond.m in Sources */,
+				1D4B271D241A14C000670F33 /* SettingViewController.m in Sources */,
 				1D0970F8241239E60043A0D7 /* SDFileAttributeHelper.m in Sources */,
 				1D37350923C586BD0063E036 /* HomeViewController.m in Sources */,
 				AA6C732723F2D23300C79056 /* MHttpTool.m in Sources */,
